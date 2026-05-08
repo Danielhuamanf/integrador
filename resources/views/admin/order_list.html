@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Clientes</title>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f7;
+    }
+
+    .container{
+      display:flex;
+      min-height:100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width:240px;
+      background:#fff;
+      padding:20px;
+      box-shadow:2px 0 10px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      margin-bottom:30px;
+    }
+
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:#666;
+      padding:12px 15px;
+      margin-bottom:8px;
+      border-radius:10px;
+      transition:.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      background:#ede7ff;
+      color:#4b2ad6;
+    }
+
+    /* MAIN */
+    .main{
+      flex:1;
+      padding:25px;
+    }
+
+    .topbar{
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-bottom:25px;
+    }
+
+    .topbar h1{
+      color:#4b2ad6;
+      font-size:26px;
+    }
+
+    .search-box{
+      position:relative;
+    }
+
+    .search-box input{
+      padding:10px 40px 10px 15px;
+      border:1px solid #ddd;
+      border-radius:20px;
+      width:250px;
+      background:#fff;
+    }
+
+    .search-box i{
+      position:absolute;
+      right:15px;
+      top:10px;
+      color:#888;
+    }
+
+    /* CARD TABLE */
+    .panel{
+      background:#fff;
+      padding:25px;
+      border-radius:15px;
+      box-shadow:0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      text-align:left;
+      padding:15px 10px;
+      color:#888;
+      font-size:14px;
+      font-weight:500;
+    }
+
+    td{
+      padding:15px 10px;
+      border-top:1px solid #eee;
+      font-size:14px;
+    }
+
+    tr:hover{
+      background:#fafafa;
+    }
+
+    /* USER */
+    .user{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .avatar{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#ddd;
+    }
+
+    .sub{
+      font-size:12px;
+      color:#888;
+    }
+
+    /* STATUS */
+    .status{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+    }
+
+    .activo{ background:#6c3ce9; }
+    .inactivo{ background:#e74c3c; }
+    .premium{ background:#3498db; }
+
+    @media(max-width:900px){
+      .container{
+        flex-direction:column;
+      }
+
+      .sidebar{
+        width:100%;
+      }
+
+      table{
+        font-size:12px;
+      }
+    }
+    .btn-login{
+      width:100%;
+      padding:12px;
+      background:#6c3ce9;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      margin-bottom:15px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR (SE CONSERVA) -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="assets/logo-pasoc.webp" width="200">
+    </div>
+
+    <div class="menu">
+      <a href="home.html"><i class="fa fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a>
+      <a href="order_list.html" class="active"><i class="fa fa-chart-pie"></i> Ventas</a>
+      <a href="chat.html"><i class="fa fa-box"></i> Applications</a>
+      <a href="almacen.html"><i class="fa fa-cubes"></i> Almacen</a>
+      <a href="usuarios.html"><i class="fa fa-users"></i> Usuarios</a>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="topbar">
+      <h1>Lista de Ordenes </h1>
+
+      <div class="search-box">
+         <input type="text" placeholder="Search anything here...">
+        <i class="fa fa-search"></i>
+      </div>
+      <h2><a class=" btn-login" href="add_venta.html"> Agregar Venta</a></h2>
+    </div>
+
+    <!-- TABLA CLIENTES -->
+    <div class="panel">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>ID</th>
+            <th>Estado</th>
+            <th>Ingresos</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          
+          <tr>
+            <td>
+              <div class="user">
+                <div class="avatar"></div>
+                <div>
+                  David<br>
+                  <span class="sub">david@gmail.com</span>
+                </div>
+              </div>
+            </td>
+            <td>Envío a Perú - Lima</td>
+            <td><a href="order_detail.html">#10421</a></td>
+            <td>
+              <div class="status">
+                <div class="dot activo"></div> Paid
+              </div>
+            </td>
+            <td>$735.2</td>
+            <td>12 Jan, 2023</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <div class="user">
+                <div class="avatar"></div>
+                <div>
+                  Warner<br>
+                  <span class="sub">warner@gmail.com</span>
+                </div>
+              </div>
+            </td>
+            <td>Envío a Perú - Arequipa</td>
+            <td><a href="order_detail.html">#10422</a></td>
+            <td>
+              <div class="status">
+                <div class="dot inactivo"></div> Canceled
+              </div>
+            </td>
+            <td>$877.12</td>
+            <td>13 Jan, 2023</td>
+          </tr>
+
+          <tr>
+            <td>
+              <div class="user">
+                <div class="avatar"></div>
+                <div>
+                  Smith<br>
+                  <span class="sub">smith@gmail.com</span>
+                </div>
+              </div>
+            </td>
+            <td>Envío a México - Jalisco</td>
+            <td><a href="order_detail.html">#10423</a></td>
+            <td>
+              <div class="status">
+                <div class="dot premium"></div> Refunded
+              </div>
+            </td>
+            <td>$134.72</td>
+            <td>14 Jan, 2023</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

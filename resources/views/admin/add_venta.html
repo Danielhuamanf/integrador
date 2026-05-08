@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Clientes</title>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f7;
+    }
+
+    .container{
+      display:flex;
+      min-height:100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width:240px;
+      background:#fff;
+      padding:20px;
+      box-shadow:2px 0 10px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      margin-bottom:30px;
+    }
+
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:#666;
+      padding:12px 15px;
+      margin-bottom:8px;
+      border-radius:10px;
+      transition:.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      background:#ede7ff;
+      color:#4b2ad6;
+    }
+
+    /* MAIN */
+    .main{
+      flex:1;
+      padding:25px;
+    }
+
+    .topbar{
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-bottom:25px;
+    }
+
+    .topbar h1{
+      color:#4b2ad6;
+      font-size:26px;
+    }
+
+    .search-box{
+      position:relative;
+    }
+
+    .search-box input{
+      padding:10px 40px 10px 15px;
+      border:1px solid #ddd;
+      border-radius:20px;
+      width:250px;
+      background:#fff;
+    }
+
+    .search-box i{
+      position:absolute;
+      right:15px;
+      top:10px;
+      color:#888;
+    }
+
+    /* CARD TABLE */
+
+
+    /* USER */
+    .user{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .avatar{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#ddd;
+    }
+
+    .sub{
+      font-size:12px;
+      color:#888;
+    }
+
+    /* STATUS */
+    .status{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+    }
+
+    .activo{ background:#6c3ce9; }
+    .inactivo{ background:#e74c3c; }
+    .premium{ background:#3498db; }
+
+    @media(max-width:900px){
+      .container{
+        flex-direction:column;
+      }
+
+      .sidebar{
+        width:100%;
+      }
+
+    }
+    .btn-login{
+      width:100%;
+      padding:12px;
+      background:#6c3ce9;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      margin-bottom:15px;
+    }
+.settings-container {
+ 
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.actions button {
+  margin-left: 10px;
+}
+
+.btn-cancel {
+  background: #eee;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save {
+  background: #6c3ce9;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 13px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+textarea {
+  height: 80px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.upload-box {
+  border: 2px dashed #6c3ce9;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  color: #6c3ce9;
+  font-size: 14px;
+}
+
+.google {
+  display: flex;
+  flex-direction: column;
+}
+
+.status {
+  background: #e0d4ff;
+  color: #6c3ce9;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.small {
+  font-size: 13px;
+  color: #777;
+}
+
+@media(max-width:900px){
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR (SE CONSERVA) -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="assets/logo-pasoc.webp" width="200">
+    </div>
+
+    <div class="menu">
+      <a href="home.html"><i class="fa fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a>
+      <a href="order_list.html" class="active"><i class="fa fa-chart-pie"></i> Ventas</a>
+      <a href="chat.html"><i class="fa fa-box"></i> Applications</a>
+      <a href="usuarios.html"><i class="fa fa-users"></i> Usuarios</a>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="topbar">
+      <h1>Lista de Ordenes </h1>
+
+      
+    </div>
+
+    <!-- TABLA venta -->
+    <div class="settings-container">
+
+      <div class="header">
+        <h2>Detalles de Venta</h2>
+        <div class="actions">
+          <button class="btn-cancel">Cancel</button>
+          <a href="pago.html" class="btn-save" >Continue</a>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+
+        <!-- LEFT -->
+        <div class="card">
+
+          <h3>Informacion del Cliente</h3>
+
+          <div class="row"> 
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" placeholder="Enter user name">
+            </div>
+            <div class="form-group">
+              <label>Nombre Completo de Cliente o Empresa</label>
+              <input type="text" placeholder="Nombre de empresa o persona natural">
+            </div>
+
+            
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label>Documento de Identidad o RUC</label>
+              <input type="text" placeholder="RUC o DNI">
+            </div>
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" placeholder="Enter email address">
+            </div>
+
+           
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label>Celular</label>
+              <input type="text" placeholder="Enter phone no">
+            </div>
+
+            <div class="form-group">
+              <label>Direccion</label>
+              <input type="text" placeholder="Direccion ">
+            </div>
+          </div>
+          <div class="card">
+            <h3>Informacion del Envio</h3>
+          <div class="row">
+            <div class="form-group">
+              <label>Lugar de envio</label>
+              <input type="text" placeholder="Direccion">
+
+            </div>
+
+            <div class="form-group">
+              <label>Zip code</label>
+              <input type="text" placeholder="Enter zip code">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label>Peso</label>
+              <input type="text" placeholder="Peso">
+            </div>
+
+            <div class="form-group">
+              <label>Dimensiones</label>
+              <input type="text" placeholder="Alto x Ancho x Alto">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Categoria</label>
+            <select>
+              <option>Normal</option>
+              <option>Peligrosa</option>
+              <option>Fragil</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <textarea placeholder="Descripcion del envio"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Timezone</label>
+            <select>
+              <option>Pacific Standard Time</option>
+            </select>
+          </div>
+
+        </div>
+          </div>
+
+
+        <!-- RIGHT -->
+        <div class="side">
+
+          <div class="card">
+            <h3>Bouchers</h3>
+            <p class="small">Documetnos que sustenten el envio</p>
+
+            <div class="upload-box">
+              Click to upload or drag and drop <br>
+              SVG, PNG, JPG or GIF <br>
+              (max. 800x400px)
+            </div>
+          </div>
+
+          <div class="card google">
+            <p><b>Archivos subidos</b> <span class="status">Boleta.jpg</span></p>
+            <p class="small">Solo se puede subir hasta un maximo de 50MB.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Clientes</title>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f7;
+    }
+
+    .container{
+      display:flex;
+      min-height:100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar{
+      width:240px;
+      background:#fff;
+      padding:20px;
+      box-shadow:2px 0 10px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      margin-bottom:30px;
+    }
+
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:#666;
+      padding:12px 15px;
+      margin-bottom:8px;
+      border-radius:10px;
+      transition:.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      background:#ede7ff;
+      color:#4b2ad6;
+    }
+
+    /* MAIN */
+    .main{
+      flex:1;
+      padding:25px;
+    }
+
+    .topbar{
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      margin-bottom:25px;
+    }
+
+    .topbar h1{
+      color:#4b2ad6;
+      font-size:26px;
+    }
+
+    .search-box{
+      position:relative;
+    }
+
+    .search-box input{
+      padding:10px 40px 10px 15px;
+      border:1px solid #ddd;
+      border-radius:20px;
+      width:250px;
+      background:#fff;
+    }
+
+    .search-box i{
+      position:absolute;
+      right:15px;
+      top:10px;
+      color:#888;
+    }
+
+    /* CARD TABLE */
+
+
+    /* USER */
+    .user{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .avatar{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#ddd;
+    }
+
+    .sub{
+      font-size:12px;
+      color:#888;
+    }
+
+    /* STATUS */
+    .status{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+    }
+
+    .activo{ background:#6c3ce9; }
+    .inactivo{ background:#e74c3c; }
+    .premium{ background:#3498db; }
+
+    @media(max-width:900px){
+      .container{
+        flex-direction:column;
+      }
+
+      .sidebar{
+        width:100%;
+      }
+
+    }
+    .btn-login{
+      width:100%;
+      padding:12px;
+      background:#6c3ce9;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      margin-bottom:15px;
+    }
+.payment-container {
+  max-width: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.accordion {
+  background: #eee;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.label {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.methods {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.method {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+}
+
+.method span {
+  display: block;
+  font-weight: bold;
+}
+
+.method.active {
+  border: 2px solid #6c3ce9;
+  color: #6c3ce9;
+}
+
+.method.add {
+  color: #6c3ce9;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.checkbox {
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.pay-btn, .pay-btn2:hover {
+  width: 100%;
+  padding: 14px;
+  background: #6c3ce9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.pay-btn2, .pay-btn:hover {
+  width: 100%;
+  padding: 14px;
+  background: #d9d6ff;
+  color: black;
+  border: none;
+  border-color:#6c3ce9 ;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR (SE CONSERVA) -->
+  <div class="sidebar">
+    <div class="logo">
+      <img src="assets/logo-pasoc.webp" width="200">
+    </div>
+
+    <div class="menu">
+      <a href="home.html"><i class="fa fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a>
+      <a href="order_list.html" class="active"><i class="fa fa-chart-pie"></i> Ventas</a>
+      <a href="chat.html"><i class="fa fa-box"></i> Applications</a>
+      <a href="almacen.html"><i class="fa fa-box"></i> Almacen</a>
+      <a href="usuarios.html"><i class="fa fa-users"></i> Usuarios</a>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="topbar">
+      <h1>Lista de Ordenes </h1>
+
+      
+    </div>
+
+    <!-- TABLA venta -->
+    <div class="payment-container">
+
+      <h2>Payment Details</h2>
+
+      <!-- Contact -->
+      <div class="accordion">
+        <div class="accordion-header">Pedro Castillo</div>
+      </div>
+
+      <!-- Payment -->
+      <div class="card">
+        <div class="card-header">Payment ▴</div>
+
+        <p class="label">Payment method</p>
+
+        <div class="methods">
+          <div class="method active">
+            ✔ 347809 <span>VISA</span>
+          </div>
+
+          <div class="method">
+            347809 <span>PayPal</span>
+          </div>
+
+          <div class="method add">
+            + New card
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Card holder name</label>
+          <input type="text" placeholder="John Welden">
+        </div>
+
+        <div class="form-group">
+          <label>Billing address</label>
+          <select>
+            <option>Germany</option>
+            <option>Perú</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label>Zip code</label>
+            <input type="text" placeholder="6789123">
+          </div>
+
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" placeholder="Berlin">
+          </div>
+        </div>
+
+        <div class="checkbox">
+          <input type="checkbox" checked> Invoice Address
+        </div>
+
+        <button class="pay-btn">Pay $67.00</button>
+        <br>
+         <br>
+        <a href="add_venta.html" ><button class="pay-btn2">Atras</button></a>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+</body>
+</html>

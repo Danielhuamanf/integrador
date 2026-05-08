@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Detail</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+body{background:#f4f5fb;}
+
+.container{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{
+  width:240px;background:#fff;padding:20px;
+  box-shadow:2px 0 10px rgba(0,0,0,0.05);
+}
+.logo{margin-bottom:30px;}
+.menu a{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;color:#666;
+  padding:12px;border-radius:10px;margin-bottom:8px;
+}
+.menu a.active,.menu a:hover{
+  background:#ede7ff;color:#6c3ce9;
+}
+
+/* MAIN */
+.main{flex:1;padding:25px;}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.title{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.title h2{
+  color:#6c3ce9;
+}
+
+.search{
+  padding:10px 15px;
+  border-radius:20px;
+  border:1px solid #ddd;
+  width:250px;
+}
+
+/* STEPS */
+.steps{
+  display:flex;
+  justify-content:space-between;
+  margin:20px 0;
+  max-width:700px;
+}
+
+.step{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#aaa;
+  font-size:14px;
+}
+
+.step.active{
+  color:#6c3ce9;
+}
+
+.circle{
+  width:22px;height:22px;
+  border-radius:50%;
+  background:#e0d7ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+}
+
+.step.active .circle{
+  background:#6c3ce9;
+  color:#fff;
+}
+
+/* CARD MAIN */
+.card{
+  background:#fff;
+  border-radius:12px;
+  padding:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,0.05);
+}
+
+/* HEADER CARD */
+.card-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.btn{
+  background:#6c3ce9;
+  color:#fff;
+  padding:10px 20px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+/* MINI CARD */
+.mini-card{
+  border:1px solid #eee;
+  border-radius:12px;
+  padding:15px;
+}
+
+/* PRODUCT */
+.product{
+  display:flex;
+  gap:10px;
+}
+
+.img{
+  width:50px;height:50px;
+  border-radius:10px;
+  background:#cde;
+}
+
+/* PAYMENT CARD */
+.card-icon{
+  margin-top:10px;
+  width:40px;
+}
+
+/* SUMMARY */
+.summary div{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+  color:#666;
+}
+
+.total{
+  font-weight:bold;
+  color:#000;
+}
+
+.label{
+  color:#888;
+  font-size:13px;
+  margin-bottom:5px;
+}
+.margin-bottom-10{
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="logo">
+    <img src="assets/logo-pasoc.webp" width="200">
+  </div>
+
+  <div class="menu">
+<a href="home.html"><i class="fa fa-house"></i> Home</a>
+      <a href="dashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a>
+      <a href="order_list.html" ><i class="fa fa-chart-pie"></i> Ventas</a>
+      <a href="chat.html"><i class="fa fa-box"></i> Applications</a>
+      <a href="almacen.html" class="active"><i class="fa fa-box"></i> Almacen</a>
+      <a href="usuarios.html"><i class="fa fa-users"></i> Usuarios</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="topbar">
+    <div class="title">
+      <h2>Order List</h2>
+    </div>
+    <input class="search" placeholder="Search anything here...">
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps">
+    <div class="step active"><div class="circle">1</div> Order received</div>
+    <div class="step active"><div class="circle">2</div> Order generate</div>
+    <div class="step active"><div class="circle">3</div> Order transmited</div>
+    <div class="step"><div class="circle">4</div> Order delivered</div>
+  </div>
+
+  <!-- MAIN CARD -->
+  <div class="card">
+
+    <div class="card-header">
+      <h3>Order details</h3>
+      <button class="btn">Imprimir</button>
+    </div>
+
+    <div style="margin-bottom:20px; color:#555;">
+      <div class="margin-bottom-10"><b>Order no:</b> EL-5414587</div>
+      <div class="margin-bottom-10"><b>From:</b> 25 Dec, 2022</div>
+      <div class="margin-bottom-10"><b>Code:</b> EL005</div>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- PRODUCT -->
+      <div>
+        <h4 style="margin-bottom:10px;">Product detail</h4>
+
+        <div class="mini-card">
+          <div class="product">
+            <div class="img"></div>
+            <div>
+              <b>Envio de un container N345232</b><br>
+              <span>$200</span><br>
+              <small style="color:#888;">Order was delivered 2 days ago</small><br>
+              <span style="color:#6c3ce9;">Delivered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BILLING -->
+      <div>
+        <h4 style="margin-bottom:10px;">Billing Information</h4>
+
+        <div class="mini-card">
+          <b>Oliver Liam</b><br><br>
+
+          <div class="label">Company Name :</div>
+          Viking Burrito<br>
+
+          <div class="label">Email Address :</div>
+          Oliver.viking@burrito.com<br>
+
+          <div class="label">VAT number :</div>
+          FRB1235476
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div>
+        <h4 style="margin-bottom:10px;">Payment detail</h4>
+
+        <div class="mini-card">
+          <b>Master Card</b><br>
+          <small>Master 1234 **** 58745</small><br>
+          <small>Expire 12/23</small><br><br>
+          Aiden Max<br>
+
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="card-icon">
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div>
+        <h4 style="margin-bottom:10px;">Order Summary</h4>
+
+        <div class="mini-card summary">
+          <div><span>Product Price :</span><span>$200</span></div>
+          <div><span>Delivery :</span><span>$10</span></div>
+          <div><span>Taxes :</span><span>$20</span></div>
+          <div class="total"><span>Total :</span><span>$230</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
