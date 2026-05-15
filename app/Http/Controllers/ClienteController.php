@@ -2,37 +2,75 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\UsuarioModel;
+use App\Models\ClienteModel;
 class ClienteController extends Controller
 {
-   public function home()
+   public function ver_clientes()
     {
-        $reportes = '';
-        return view('cliente.home_cliente', compact('reportes'));
-    }
+        $clientes = ClienteModel::all();
 
-    // FORM CREAR
-    public function create()
-    {
-        return view('usuarios.create');
+        return view('admin.clientes', compact('clientes'));
     }
-
     // GUARDAR
-    public function store(Request $request)
+   public function guardar_cliente(Request $request)
     {
-        Usuario::create([
-            'username' => $request->username,
-            'password' => $request->password,
-            'saldo' => $request->saldo
+        ClienteModel::create([
+
+            'id_usuario' => 1, // luego puedes poner auth()->id()
+
+            'tipo_persona' => $request->tipo_persona,
+            'nombre_completo' => $request->nombre_completo,
+            'correo' => $request->correo,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'ubigeo' => $request->ubigeo,
+            'estado' => $request->estado,
+            'ruc' => $request->ruc,
+            'nombre_comercial' => $request->nombre_comercial,
+            'representante_legal' => $request->representante_legal,
+            'dni' => $request->dni
         ]);
 
-        return redirect()->route('usuarios.index');
+        return redirect()->back()
+            ->with('success','Cliente registrado');
     }
-
-    // ELIMINAR
-    public function destroy($id)
+    public function editar_cliente(Request $request, $id)
     {
-        Usuario::findOrFail($id)->delete();
-        return redirect()->route('usuarios.index');
+        $cliente = ClienteModel::find($id);
+
+        if(!$cliente){
+            return redirect()->back();
+        }
+
+        $cliente->update([
+
+            'tipo_persona' => $request->tipo_persona,
+            'nombre_completo' => $request->nombre_completo,
+            'correo' => $request->correo,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+            'ubigeo' => $request->ubigeo,
+            'estado' => $request->estado,
+            'ruc' => $request->ruc,
+            'nombre_comercial' => $request->nombre_comercial,
+            'representante_legal' => $request->representante_legal,
+            'dni' => $request->dni
+
+        ]);
+
+        return redirect()->back()
+            ->with('success','Cliente actualizado');
+    }
+    // ELIMINAR
+    public function eliminar_cliente($id)
+    {
+        $cliente = ClienteModel::find($id);
+
+        if($cliente){
+            $cliente->delete();
+        }
+
+        return redirect()->back()
+            ->with('success','Cliente eliminado');
     }
 }

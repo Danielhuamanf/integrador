@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UsuarioModel;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -25,6 +26,7 @@ class UsuarioController extends Controller
     // =========================
     public function login()
     {
+
         return view('login');
     }
     public function register()
@@ -47,6 +49,7 @@ class UsuarioController extends Controller
     }
     public function ver_usuarios()
     {
+
         $usuarios = UsuarioModel::all();
         return view('admin.usuarios', compact('usuarios'));  
     }

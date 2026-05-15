@@ -180,7 +180,7 @@
     
     <h2><img src="assets/logo-pasoc.webp" width="120"></h2>
     <div class="nav-links">
-      <a href="login.html">Login</a>
+      <a href="{{ route('login') }}">Login</a>
 
       <a href="#formulario" >Contacto</a>
     </div>
@@ -249,11 +249,13 @@
 
 <section class="container" id="formulario">
   <h2 class="title">Solicitar Cotización</h2>
-  <form onsubmit="enviarFormulario(event)">
-    <input type="text" placeholder="Nombre" required>
-    <input type="email" placeholder="Correo" required>
-    <textarea placeholder="Describe tu requerimiento" required></textarea>
-    <button class="btn">Enviar</button>
+  <form method="POST" action="{{ route('guardar_lead') }}">
+        @csrf
+    <input type="text" placeholder="Nombre" name="nombre" required>
+    <input type="email" placeholder="Correo" name="correo" required>
+    <input type="text" placeholder="Telefono" name="telefono" required>
+    <textarea placeholder="Describe tu requerimiento" required  name="mensaje"></textarea>
+    <button class="btn" type="submit">Enviar</button>
   </form>
 </section>
 

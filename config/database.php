@@ -98,6 +98,13 @@ return [
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
         ],
+        'sqlite_backup' => [
+                'driver' => 'sqlite',
+                'url' => env('DB_URL'),
+                'database' => database_path('backup.sqlite'),
+                'prefix' => '',
+                'foreign_key_constraints' => true,
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

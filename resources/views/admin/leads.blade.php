@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clientes</title>
+<title>Leads</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -131,9 +131,9 @@ tr:hover{
       <a href="{{ url('/home_admin') }}"><i class="fa fa-chart-pie"></i> Ventas</a>
       <a href="{{ url('/home_admin') }}"><i class="fa fa-box"></i> Applications</a>
       <a href="{{ url('/home_admin') }}"><i class="fa fa-cubes"></i> Almacen</a>
-      <a href="{{ url('/ver_clientes') }}" ><i class="fa fa-users"></i> Clientes</a>
+      <a href="{{ url('/ver_clientes') }}" class="active"><i class="fa fa-users"></i> Clientes</a>
       <a href="{{ url('/ver_usuarios') }}" class="active"><i class="fa fa-users"></i> Usuarios</a>
-       <a href="{{ url('/ver_leads') }}" ><i class="fa fa-users"></i> Leads</a>
+      <a href="{{ url('/ver_leads') }}" ><i class="fa fa-users"></i> Leads</a>
   </div>
 </div>
 
@@ -141,7 +141,7 @@ tr:hover{
 <div class="main">
 
   <div class="topbar">
-    <h2>Usuarios</h2>
+    <h2>Leads</h2>
     <input class="search" placeholder="Search anything here...">
   </div>
 
@@ -151,10 +151,11 @@ tr:hover{
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Rol</th>
           <th>Correo</th>
-          <th>Celular</th>
-          <th>Creado en</th>
+          <th>Telefono</th>
+          <th>Estado</th>
+          <th>Mensaje</th>
+          <th>Fecha de Creación</th>
         </tr>
       </thead>
 
@@ -169,13 +170,12 @@ tr:hover{
             {{ $usuario->nombre }}
           </div>
         </td>
-        <td>{{ $usuario->rol }}</td>
-
         <td>{{ $usuario->correo }}</td>
-
-        <td>---</td>
-
-        <td>{{ $usuario->created_at ?? '---' }}</td>
+        <td>{{ $usuario->telefono }}</td>
+        <td>{{ $usuario->estado }}</td>
+        <td>{{ $usuario->mensaje }}</td>
+        <td>{{ $usuario->created_at }}</td>
+       
       </tr>
 
       @endforeach
