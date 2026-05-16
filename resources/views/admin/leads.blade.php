@@ -126,14 +126,14 @@ tr:hover{
 
   <div class="menu">
    <a href="home.html"><i class="fa fa-house"></i> Home</a>
-      <a href="{{ url('/home_admin') }}"><i class="fa fa-house"></i> Home</a>
+       <a href="{{ url('/home_admin') }}"><i class="fa fa-house"></i> Home</a>
       <a href="{{ url('/home_admin') }}"><i class="fa fa-chart-line"></i> Dashboard</a>
-      <a href="{{ url('/home_admin') }}"><i class="fa fa-chart-pie"></i> Ventas</a>
-      <a href="{{ url('/home_admin') }}"><i class="fa fa-box"></i> Applications</a>
-      <a href="{{ url('/home_admin') }}"><i class="fa fa-cubes"></i> Almacen</a>
-      <a href="{{ url('/ver_clientes') }}" class="active"><i class="fa fa-users"></i> Clientes</a>
-      <a href="{{ url('/ver_usuarios') }}" class="active"><i class="fa fa-users"></i> Usuarios</a>
-      <a href="{{ url('/ver_leads') }}" ><i class="fa fa-users"></i> Leads</a>
+      <a href="{{ url('ver_ventas') }}" ><i class="fa fa-chart-pie"></i> Ventas</a>
+      <a href="#"><i class="fa fa-box"></i> Applications</a>
+      <a href="#"><i class="fa fa-cubes"></i> Almacen</a>      
+      <a href="{{ url('/ver_clientes') }}" ><i class="fa fa-users"></i> Clientes</a>
+      <a href="{{ url('/ver_usuarios') }}" ><i class="fa fa-users"></i> Usuarios</a>
+      <a href="{{ url('/ver_leads') }}" class="active"><i class="fa fa-users"></i> Leads</a>
   </div>
 </div>
 

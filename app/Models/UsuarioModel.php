@@ -8,7 +8,7 @@ use App\Traits\BackupToSqlite;
 class UsuarioModel extends Authenticatable
 {
     use Notifiable;
-
+    use BackupToSqlite;
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
 

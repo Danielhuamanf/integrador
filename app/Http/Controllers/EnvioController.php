@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Usuario;
-class Controller2 extends Controller
+class EnvioController extends Controller
 {
    public function index()
     {

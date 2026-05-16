@@ -61,4 +61,8 @@ Route::get('/chat', [UsuarioController::class, 'ver_chat']);
 
 //cliente
 Route::get('/home_cliente', [ClienteController::class, 'home']);
-Route::get('/ver_ventas', [VentaController::class, 'index']);
+Route::get('/ver_ventas', [VentaController::class, 'index'])->name('ventas.index');
+Route::get('/agregar_venta', [VentaController::class, 'agregar_venta']);
+Route::post('/ventas/store', [VentaController::class, 'store'])->name('ventas.store');
+Route::get('/ventas/{id}',   [VentaController::class, 'show'])->name('ventas.show');
+Route::get('/buscar-cliente',[VentaController::class, 'buscarCliente'])->name('buscar.cliente');
