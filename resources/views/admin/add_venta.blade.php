@@ -1,63 +1,7 @@
 {{-- resources/views/ventas/create.blade.php --}}
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Nueva Venta</title>
-
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@include('layouts.header')
 
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial,sans-serif;
-    }
-
-    body{
-      background:#f4f4f7;
-    }
-
-    .container{
-      display:flex;
-      min-height:100vh;
-    }
-
-    .sidebar{
-      width:240px;
-      background:#fff;
-      padding:20px;
-      box-shadow:2px 0 10px rgba(0,0,0,0.05);
-    }
-
-    .logo{
-      margin-bottom:30px;
-    }
-
-    .menu a{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:#666;
-      padding:12px 15px;
-      margin-bottom:8px;
-      border-radius:10px;
-      transition:.3s;
-    }
-
-    .menu a:hover,
-    .menu a.active{
-      background:#ede7ff;
-      color:#4b2ad6;
-    }
-
     .main{
       flex:1;
       padding:25px;
@@ -190,13 +134,7 @@
 
     @media(max-width:900px){
 
-      .container{
-        flex-direction:column;
-      }
-
-      .sidebar{
-        width:100%;
-      }
+      
 
       .settings-grid{
         grid-template-columns:1fr;
@@ -209,33 +147,6 @@
     }
 
   </style>
-</head>
-
-<body>
-
-<div class="container">
-
-  {{-- SIDEBAR --}}
-  <div class="sidebar">
-
-    <div class="logo">
-      <img src="{{ asset('assets/logo-pasoc.webp') }}" width="200">
-    </div>
-
-    <div class="menu">
-
-        <a href="{{ url('/home_admin') }}"><i class="fa fa-house"></i> Home</a>
-        <a href="{{ url('/home_admin') }}"><i class="fa fa-chart-line"></i> Dashboard</a>
-        <a href="{{ url('/home_admin') }}" class="active"><i class="fa fa-chart-pie"></i> Ventas</a>
-        <a href="{{ url('/home_admin') }}"><i class="fa fa-box"></i> Applications</a>
-        <a href="{{ url('/home_admin') }}"><i class="fa fa-cubes"></i> Almacen</a>
-        <a href="{{ url('/ver_clientes') }}" ><i class="fa fa-users"></i> Clientes</a>
-        <a href="{{ url('/ver_usuarios') }}" ><i class="fa fa-users"></i> Usuarios</a>
-        <a href="{{ url('/ver_leads') }}" ><i class="fa fa-users"></i> Leads</a>
-
-    </div>
-
-  </div>
 
   {{-- MAIN --}}
   <div class="main">

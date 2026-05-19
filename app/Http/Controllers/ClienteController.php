@@ -12,8 +12,8 @@ class ClienteController extends Controller
    public function ver_clientes()
     {
         $clientes = ClienteModel::all();
-
-        return view('admin.clientes', compact('clientes'));
+         $data = ['url'=>'clientes'];
+        return view('admin.clientes', compact('clientes','data'));
     }
     // GUARDAR
    public function guardar_cliente(Request $request)

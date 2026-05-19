@@ -8,13 +8,14 @@ class AdminController extends Controller
 {
    public function home()
     {
-        $variable = [];
-        return view('admin.dashboard', compact('variable'));
+        $data = ['url'=>'dashboard','variable'=>[]];
+        return view('admin.dashboard', compact('data'));
     }
     public function ver_leads()
     {
+        $data = ['url'=>'leads'];
         $usuarios = LeadsModel::all();
-        return view('admin.leads', compact('usuarios'));
+        return view('admin.leads', compact('usuarios','data'));
     }
     // FORM CREAR
     public function create()

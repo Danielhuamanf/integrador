@@ -13,12 +13,14 @@ class VentaController extends Controller
     {
 
         $ventas = EnvioModel::all();
-        return view('admin.order_list', compact('ventas'));
+        $data = ['url'=>'ventas'];
+        return view('admin.order_list', compact('ventas','data'));
     }
     public function agregar_venta()
     {
         $ventas = EnvioModel::all();
-        return view('admin.add_venta', compact('ventas'));
+        $data = ['url'=>'ventas'];
+        return view('admin.add_venta', compact('ventas','data'));
     }
     public function store(Request $request)
     {

@@ -1,5 +1,148 @@
-@include('admin.header')
+@include('layouts.header')
   <!-- MAIN -->
+  <style>
+    
+    /* SIDEBAR */
+    .sidebar{
+      width:240px;
+      background:#fff;
+      padding:20px;
+      box-shadow:2px 0 10px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:22px;
+      font-weight:bold;
+      color:#4b2ad6;
+      margin-bottom:30px;
+      line-height:1.3;
+    }
+
+    
+    /* MAIN */
+    .main{
+      flex:1;
+      padding:25px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      margin-bottom:25px;
+    }
+
+    .topbar h1{
+      color:#4b2ad6;
+      font-size:28px;
+    }
+
+    .search-box{
+      position:relative;
+    }
+
+    .search-box input{
+      padding:12px 40px 12px 15px;
+      border:1px solid #ddd;
+      border-radius:20px;
+      width:250px;
+      background:#fff;
+    }
+
+    .search-box i{
+      position:absolute;
+      right:15px;
+      top:12px;
+      color:#888;
+    }
+
+    /* CARDS */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      margin-bottom:25px;
+    }
+
+    .card{
+      background:#fff;
+      padding:20px;
+      border-radius:15px;
+      box-shadow:0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    .card h4{
+      color:#777;
+      font-size:14px;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      font-size:28px;
+      color:#4b2ad6;
+      font-weight:bold;
+    }
+
+    /* GRID PANELS */
+    .grid{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:20px;
+      margin-bottom:20px;
+    }
+
+    .panel{
+      background:#fff;
+      padding:40px;
+      border-radius:15px;
+      box-shadow:0 3px 12px rgba(0,0,0,0.05);
+    }
+
+    .panel h3{
+      margin-bottom:15px;
+      color:#444;
+    }
+
+    .shipment-item,
+    .country-item{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:15px;
+      color:#555;
+    }
+
+    .shipment-item i{
+      color:#4b2ad6;
+      margin-right:8px;
+    }
+
+    @media(max-width:1000px){
+      .cards{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:700px){
+     
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .topbar{
+        flex-direction:column;
+        gap:15px;
+        align-items:flex-start;
+      }
+    }
+    .subtitulo{
+
+        color: gray;
+        font-size: 13px
+    }
+  </style>
   <div class="main">
 
     <div class="topbar">
@@ -73,7 +216,7 @@
   new Chart(document.getElementById('salesChart'), {
     type: 'line',
     data: {
-      labels: [<?php foreach ($variable as $key) {
+      labels: [<?php foreach ($data['variable'] as $key) {
         echo "'".$key['value']."',";
       }?>'10','11','12','13','14','15','16','17'],
       datasets: [{
