@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 use App\Models\ClienteModel;
 class ClienteController extends Controller
 {
+    public function home()
+    {
+        return view('cliente.home_cliente');
+    }
    public function ver_clientes()
     {
         $clientes = ClienteModel::all();
