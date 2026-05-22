@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tracking extends Model
+class TrackingModel extends Model
 {
     protected $table = 'tracking';
     protected $primaryKey = 'id_tracking';
@@ -14,9 +14,11 @@ class Tracking extends Model
     protected $fillable = [
         'id_envio',
         'id_estado',
-        'id_almacen',
-        'descripcion',
-        'fecha_evento'
+        'ubicacion',
+        'fecha',
+        'comentario',
+        'created_at',
+        'updated_at'
     ];
 
     // =========================
@@ -26,18 +28,18 @@ class Tracking extends Model
     // Pertenece a un envío
     public function envio()
     {
-        return $this->belongsTo(Envio::class, 'id_envio');
+        return $this->belongsTo(EnvioModel::class, 'id_envio');
     }
 
     // Estado del evento
     public function estado()
     {
-        return $this->belongsTo(EstadoEnvio::class, 'id_estado');
+        return $this->belongsTo(EstadosEnvioModel::class, 'id_estado');
     }
 
     // Almacén (opcional, si implementaste esta FK)
     public function almacen()
     {
-        return $this->belongsTo(Almacen::class, 'id_almacen');
+        return $this->belongsTo(AlmacenModel::class, 'id_almacen');
     }
 }

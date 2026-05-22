@@ -1,61 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clientes</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<?php echo $__env->make('layouts.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:#f4f5fb;
-}
-
-.container{
-display:flex;
-min-height:100vh;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-width:240px;
-background:#fff;
-padding:20px;
-box-shadow:2px 0 10px rgba(0,0,0,0.05);
-}
-
-.logo{
-margin-bottom:30px;
-}
-
-.menu a{
-display:flex;
-align-items:center;
-gap:12px;
-text-decoration:none;
-color:#666;
-padding:12px;
-border-radius:10px;
-margin-bottom:8px;
-}
-
-.menu a.active,
-.menu a:hover{
-background:#ede7ff;
-color:#6c3ce9;
-}
-
-/* MAIN */
 
 .main{
 flex:1;
@@ -233,14 +178,6 @@ flex:1;
 
 @media(max-width:900px){
 
-.container{
-flex-direction:column;
-}
-
-.sidebar{
-width:100%;
-}
-
 table{
 font-size:12px;
 }
@@ -248,32 +185,7 @@ font-size:12px;
 }
 
 </style>
-</head>
 
-<body>
-
-<div class="container">
-
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-<div class="logo">
-<img src="<?php echo e(asset('assets/logo-pasoc.webp')); ?>" width="200">
-</div>
-
-<div class="menu">
-      <a href="<?php echo e(url('/home_admin')); ?>"><i class="fa fa-house"></i> Home</a>
-      <a href="<?php echo e(url('/home_admin')); ?>"><i class="fa fa-chart-line"></i> Dashboard</a>
-      <a href="<?php echo e(url('ver_ventas')); ?>" ><i class="fa fa-chart-pie"></i> Ventas</a>
-      <a href="#"><i class="fa fa-box"></i> Applications</a>
-      <a href="#"><i class="fa fa-cubes"></i> Almacen</a>      
-      <a href="<?php echo e(url('/ver_clientes')); ?>" class="active"><i class="fa fa-users"></i> Clientes</a>
-      <a href="<?php echo e(url('/ver_usuarios')); ?>" ><i class="fa fa-users"></i> Usuarios</a>
-      <a href="<?php echo e(url('/ver_leads')); ?>" ><i class="fa fa-users"></i> Leads</a>
-</div>
-
-</div>
 
 <!-- MAIN -->
 

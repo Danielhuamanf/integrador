@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Traits\BackupToSqlite;
 class UsuarioModel extends Authenticatable
 {
     use Notifiable;
-
+    use BackupToSqlite;
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
 
@@ -23,10 +23,25 @@ class UsuarioModel extends Authenticatable
         'updated_at',
         'created_at'
     ];
+    /*
+    protected static function booted()
+    {
+        static::created(function ($usuario) {
 
-    protected $hidden = [
-        'password'
-    ];
+            DB::connection('sqlite_backup')
+                ->table('usuarios')
+                ->insert([
+                    'id_usuario' => $usuario->id,
+                    'username' => $usuario->nombre,
+                    'correo' => $usuario->correo,
+                    'password' => $usuario->password,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+
+        });
+    }*/
+   
 
     // =========================
     // RELACIONES

@@ -2,37 +2,65 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\Usuario;
-class Controller2 extends Controller
+use App\Models\ZonasModel;
+class ZonaController extends Controller
 {
-   public function index()
+    public function index()
     {
-        $usuarios = Usuario::all();
-        return view('usuarios.index', compact('usuarios'));
-    }
+        $zonas = ZonasModel::orderBy('id_zona', 'desc')->get();
+        $data = ['url' => 'zonas'];
 
-    // FORM CREAR
-    public function create()
-    {
-        return view('usuarios.create');
+        return view('admin.zona_list', compact('zonas', 'data'));
     }
 
     // GUARDAR
     public function store(Request $request)
     {
-        Usuario::create([
-            'username' => $request->username,
-            'password' => $request->password,
-            'saldo' => $request->saldo
+        $request->validate([
+            'nombre_zona' => 'required|max:255',
+            'descripcion' => 'nullable|max:255',
+            'direccion'   => 'nullable|max:255',
         ]);
 
-        return redirect()->route('usuarios.index');
+        ZonasModel::create([
+            'nombre_zona' => $request->nombre_zona,
+            'descripcion' => $request->descripcion,
+            'direccion'   => $request->direccion,
+        ]);
+
+        return redirect()
+            ->route('zonas.index')
+            ->with('success', 'Zona registrada correctamente');
+    }
+
+    // ACTUALIZAR
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre_zona' => 'required|max:255',
+            'descripcion' => 'nullable|max:255',
+            'direccion'   => 'nullable|max:255',
+        ]);
+
+        $zona = ZonasModel::find($id);
+
+        if (!$zona) {
+            return redirect()
+                ->route('zonas.index')
+                ->with('error', 'Zona no encontrada');
+        }
+
+        $zona->update([
+            'nombre_zona' => $request->nombre_zona,
+            'descripcion' => $request->descripcion,
+            'direccion'   => $request->direccion,
+        ]);
+
+        return redirect()
+            ->route('zonas.index')
+            ->with('success', 'Zona actualizada correctamente');
     }
 
     // ELIMINAR
-    public function destroy($id)
-    {
-        Usuario::findOrFail($id)->delete();
-        return redirect()->route('usuarios.index');
-    }
+    
 }
