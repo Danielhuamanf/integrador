@@ -1,58 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Clientes</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+<?php echo $__env->make('layouts.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body{
-      background:#f4f4f7;
-    }
-
-    .container{
-      display:flex;
-      min-height:100vh;
-    }
-
-    .sidebar{
-      width:240px;
-      background:#fff;
-      padding:20px;
-      box-shadow:2px 0 10px rgba(0,0,0,0.05);
-    }
-
-    .logo{
-      margin-bottom:30px;
-    }
-
-    .menu a{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:#666;
-      padding:12px 15px;
-      margin-bottom:8px;
-      border-radius:10px;
-      transition:.3s;
-    }
-
-    .menu a:hover,
-    .menu a.active{
-      background:#ede7ff;
-      color:#4b2ad6;
-    }
-
     .main{
       flex:1;
       padding:25px;
@@ -177,43 +124,13 @@
       text-decoration:underline;
     }
 
-    @media(max-width:900px){
-      .container{
-        flex-direction:column;
-      }
-
-      .sidebar{
-        width:100%;
-      }
-    }
   </style>
-</head>
 
-<body>
-
-<div class="container">
-
-  <div class="sidebar">
-    <div class="logo">
-      <img src="<?php echo e(asset('assets/logo-pasoc.webp')); ?>" width="200">
-    </div>
-
-    <div class="menu">
-      <a href="<?php echo e(url('/home_admin')); ?>"><i class="fa fa-house"></i> Home</a>
-      <a href="<?php echo e(url('/home_admin')); ?>"><i class="fa fa-chart-line"></i> Dashboard</a>
-      <a href="<?php echo e(url('ver_ventas')); ?>" class="active"><i class="fa fa-chart-pie"></i> Ventas</a>
-      <a href="#"><i class="fa fa-box"></i> Applications</a>
-      <a href="#"><i class="fa fa-cubes"></i> Almacen</a>      
-      <a href="<?php echo e(url('/ver_clientes')); ?>" ><i class="fa fa-users"></i> Clientes</a>
-      <a href="<?php echo e(url('/ver_usuarios')); ?>" ><i class="fa fa-users"></i> Usuarios</a>
-      <a href="<?php echo e(url('/ver_leads')); ?>" ><i class="fa fa-users"></i> Leads</a>
-    </div>
-  </div>
 
   <div class="main">
 
     <div class="topbar">
-      <h1>Lista de Ordenes</h1>
+      <h1>Lista de Pedidos</h1>
 
       <div class="search-box">
         <input type="text" placeholder="Buscar...">
@@ -240,79 +157,119 @@
           </tr>
         </thead>
 
-        <tbody>
+       <tbody>
 
-        <?php $__currentLoopData = $ventas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $venta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<?php $__currentLoopData = $ventas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $venta): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-          <?php
-            $estadoClass = 'activo';
+    <?php
 
-            if($venta->estado == 'Cancelado'){
-              $estadoClass = 'inactivo';
-            }
+        $estadoClass = 'activo';
 
-            if($venta->estado == 'Reembolsado'){
-              $estadoClass = 'premium';
-            }
-          ?>
+        if($venta->estado == 2){
+            $estadoClass = 'premium';
+        }
 
-          <tr>
+        if($venta->estado == 3){
+            $estadoClass = 'inactivo';
+        }
 
-            <td>
-              <div class="user">
+    ?>
+
+    <tr>
+
+        
+        <td>
+
+            <div class="user">
+
                 <div class="avatar"></div>
 
                 <div>
-                  <?php echo e($venta->cliente); ?> <br>
 
-                  <span class="sub">
-                    <?php echo e($venta->correo); ?>
+                    <?php echo e($venta->cliente->nombre_completo ?? 'Sin cliente'); ?>
 
-                  </span>
+
+                    <br>
+
+                    <span class="sub">
+
+                        <?php echo e($venta->cliente->correo ?? '-'); ?>
+
+
+                    </span>
+
                 </div>
-              </div>
-            </td>
 
-            <td>
-              <?php if($venta->detalle->count()): ?>
-                <?php echo e($venta->detalle->first()->descripcion); ?>
+            </div>
 
-              <?php else: ?>
-                Sin detalle
-              <?php endif; ?>
-            </td>
+        </td>
 
-            <td>
-              <a class="id-link"
-                 href="<?php echo e(route('ventas.show', $venta->id_envio)); ?>">
-                 #<?php echo e($venta->id_envio); ?>
+        
+        <td>
 
-              </a>
-            </td>
+            <?php echo e($venta->descripcion ?? 'Sin descripción'); ?>
 
-            <td>
-              <div class="status">
+
+        </td>
+
+        
+        <td>
+
+            <a class="id-link"
+               href="<?php echo e(route('envios.detalle', $venta->id_envio,'/detalle')); ?>">
+
+                #<?php echo e($venta->id_envio); ?>
+
+
+            </a>
+
+        </td>
+
+        
+        <td>
+
+            <div class="status">
+
                 <div class="dot <?php echo e($estadoClass); ?>"></div>
-                <?php echo e($venta->estado); ?>
 
-              </div>
-            </td>
+                <?php echo e($venta->estado_envio->nombre_estado ?? 'Pendiente'); ?>
 
-            <td>
-              $<?php echo e(number_format($venta->total, 2)); ?>
 
-            </td>
+            </div>
 
-            <td>
-              <?php echo e(\Carbon\Carbon::parse($venta->fecha)->format('d M, Y')); ?>
+        </td>
 
-            </td>
+        
+        <td>
 
-          </tr>
+            <?php echo e($venta->tipo->nombre_tipo_envio ?? '-'); ?>
 
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-        </tbody>
+        </td>
+
+        
+        <td>
+
+            <?php if($venta->fecha_envio): ?>
+
+                <?php echo e(\Carbon\Carbon::parse(
+                    $venta->fecha_envio
+                )->format('d/m/Y')); ?>
+
+
+            <?php else: ?>
+
+                -
+
+            <?php endif; ?>
+
+        </td>
+
+    </tr>
+
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+</tbody>
 
       </table>
 

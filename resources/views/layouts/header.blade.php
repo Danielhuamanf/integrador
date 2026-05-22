@@ -79,16 +79,19 @@
 
   <!-- SIDEBAR -->
   <div class="sidebar">
-    <div class="logo"><img src="assets/logo-pasoc.webp" width="200"></div>
+    <div class="logo"><img src="{{ asset('assets/logo-pasoc.webp') }}" width="200"></div>
 
     <div class="menu">
           <a href="{{ url('/home_admin') }}" class="{{ $data['url'] == 'home' ? 'active' : '' }}"><i class="fa fa-house"></i> Home</a>
-      <a href="{{ url('/home_admin') }}" class="{{ $data['url'] == 'dashboard' ? 'active' : '' }}"><i class="fa fa-chart-line"></i> Dashboard</a>
-      <a href="{{ url('ver_ventas') }}" class="{{ $data['url'] == 'ventas' ? 'active' : '' }}"><i class="fa fa-chart-pie"></i> Ventas</a>
-      <a href="{{ url('/chat') }}"><i class="fa fa-box" class="{{ $data['url'] == 'chat' ? 'active' : '' }}"></i> Chat</a>
-      <a href="{{ url('/ver_almacen') }}"><i class="fa fa-cubes" class="{{ $data['url'] == 'almacen' ? 'active' : '' }}"></i> Almacen</a>      
-      <a href="{{ url('/ver_clientes') }}" class="{{ $data['url'] == 'clientes' ? 'active' : '' }}"><i class="fa fa-users"></i> Clientes</a>
+      <a href="{{ url('/dashboard_admin') }}" class="{{ $data['url'] == 'dashboard' ? 'active' : '' }}"><i class="fa fa-chart-line"></i> Dashboard</a>
+      <a href="{{ url('ver_ventas') }}" class="{{ $data['url'] == 'ventas' ? 'active' : '' }}"><i class="fa fa-chart-pie"></i> Envios</a>
+      <a href="{{ url('documentos') }}" class="{{ $data['url'] == 'documentos' ? 'active' : '' }}"><i class="fa fa-file"></i> Documentos</a>
+      <a href="{{ url('/almacen') }}" class="{{ $data['url'] == 'almacen' ? 'active' : '' }}"><i class="fa fa-cubes" ></i> Almacen</a>   
+      <a href="{{ url('/zonas') }}" class="{{ $data['url'] == 'zonas' ? 'active' : '' }}"><i class="fa fa-globe" ></i> Zonas</a> 
+      <a href="{{ url('/precios') }}" class="{{ $data['url'] == 'precios' ? 'active' : '' }}"><i class="fa-dollar" ></i> Precios</a>       
+      <a href="{{ url('/ver_clientes') }}" class="{{ $data['url'] == 'clientes' ? 'active' : '' }}"><i class="fa fa-user-circle"></i> Clientes</a>
       <a href="{{ url('/ver_usuarios') }}" class="{{ $data['url'] == 'usuarios' ? 'active' : '' }}"><i class="fa fa-users"></i> Usuarios</a>
-      <a href="{{ url('/ver_leads') }}" class="{{ $data['url'] == 'leads' ? 'active' : '' }}"><i class="fa fa-users"></i> Leads</a>
+      <a href="{{ url('/ver_leads') }}" class="{{ $data['url'] == 'leads' ? 'active' : '' }}"><i class="fa fa-user-plus"></i> Leads</a>
+      <a href="{{ url('/logout_admin') }}" class="{{ $data['url'] == 'logout' ? 'active' : '' }}"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
     </div>
-  </div>
+  </div>  

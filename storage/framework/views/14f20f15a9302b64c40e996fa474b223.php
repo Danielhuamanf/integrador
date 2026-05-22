@@ -230,7 +230,7 @@
     <div class="menu">
       <a href="home_cliente.html" class="active"><i class="fa fa-house"></i> Home</a>
       <a href="chat2.html"><i class="fa fa-message"></i> Chat</a>
-      <a href="envios_cliente.html" ><i class="fa fa-box"></i> Envios</a>
+      <a href="<?php echo e(url('/envios_cliente')); ?>" ><i class="fa fa-box"></i> Envios</a>
       <a href="configuracion_cliente.html"><i class="fa fa-user"></i> Configuracion</a>
       <form action="<?php echo e(url('/logout')); ?>" method="POST" style="display:inline;">
           <?php echo csrf_field(); ?>
