@@ -1,8 +1,5 @@
 @include('layouts.header')
   <style>
-
-
-
     .main{
       flex:1;
       padding:25px;
@@ -133,7 +130,7 @@
   <div class="main">
 
     <div class="topbar">
-      <h1>Lista de Ordenes</h1>
+      <h1>Lista de Pedidos</h1>
 
       <div class="search-box">
         <input type="text" placeholder="Buscar...">
@@ -160,73 +157,112 @@
           </tr>
         </thead>
 
-        <tbody>
+       <tbody>
 
-        @foreach($ventas as $venta)
+@foreach($ventas as $venta)
 
-          @php
-            $estadoClass = 'activo';
+    @php
 
-            if($venta->estado == 'Cancelado'){
-              $estadoClass = 'inactivo';
-            }
+        $estadoClass = 'activo';
 
-            if($venta->estado == 'Reembolsado'){
-              $estadoClass = 'premium';
-            }
-          @endphp
+        if($venta->estado == 2){
+            $estadoClass = 'premium';
+        }
 
-          <tr>
+        if($venta->estado == 3){
+            $estadoClass = 'inactivo';
+        }
 
-            <td>
-              <div class="user">
+    @endphp
+
+    <tr>
+
+        {{-- CLIENTE --}}
+        <td>
+
+            <div class="user">
+
                 <div class="avatar"></div>
 
                 <div>
-                  {{ $venta->cliente }} <br>
 
-                  <span class="sub">
-                    {{ $venta->correo }}
-                  </span>
+                    {{ $venta->cliente->nombre_completo ?? 'Sin cliente' }}
+
+                    <br>
+
+                    <span class="sub">
+
+                        {{ $venta->cliente->correo ?? '-' }}
+
+                    </span>
+
                 </div>
-              </div>
-            </td>
 
-            <td>
-              @if($venta->detalle->count())
-                {{ $venta->detalle->first()->descripcion }}
-              @else
-                Sin detalle
-              @endif
-            </td>
+            </div>
 
-            <td>
-              <a class="id-link"
-                 href="{{ route('ventas.show', $venta->id_envio) }}">
-                 #{{ $venta->id_envio }}
-              </a>
-            </td>
+        </td>
 
-            <td>
-              <div class="status">
+        {{-- DESCRIPCION --}}
+        <td>
+
+            {{ $venta->descripcion ?? 'Sin descripción' }}
+
+        </td>
+
+        {{-- ID --}}
+        <td>
+
+            <a class="id-link"
+               href="{{ route('envios.detalle', $venta->id_envio,'/detalle') }}">
+
+                #{{ $venta->id_envio }}
+
+            </a>
+
+        </td>
+
+        {{-- ESTADO --}}
+        <td>
+
+            <div class="status">
+
                 <div class="dot {{ $estadoClass }}"></div>
-                {{ $venta->estado }}
-              </div>
-            </td>
 
-            <td>
-              ${{ number_format($venta->total, 2) }}
-            </td>
+                {{ $venta->estado_envio->nombre_estado ?? 'Pendiente' }}
 
-            <td>
-              {{ \Carbon\Carbon::parse($venta->fecha)->format('d M, Y') }}
-            </td>
+            </div>
 
-          </tr>
+        </td>
 
-        @endforeach
+        {{-- TIPO ENVIO --}}
+        <td>
 
-        </tbody>
+            {{ $venta->tipo->nombre_tipo_envio ?? '-' }}
+
+        </td>
+
+        {{-- FECHA --}}
+        <td>
+
+            @if($venta->fecha_envio)
+
+                {{ \Carbon\Carbon::parse(
+                    $venta->fecha_envio
+                )->format('d/m/Y') }}
+
+            @else
+
+                -
+
+            @endif
+
+        </td>
+
+    </tr>
+
+@endforeach
+
+</tbody>
 
       </table>
 

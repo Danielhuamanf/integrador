@@ -49,9 +49,9 @@ class UsuarioController extends Controller
     }
     public function ver_usuarios()
     {
-
+         $data = ['url'=>'usuarios'];
         $usuarios = UsuarioModel::all();
-        return view('admin.usuarios', compact('usuarios'));  
+        return view('admin.usuarios', compact('usuarios','data'));  
     }
 
     // =========================

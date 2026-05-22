@@ -1,7 +1,33 @@
-@include('layouts.header')
-  <!-- MAIN -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Analytics</title>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
-    
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f7;
+    }
+
+    .container{
+      display:flex;
+      min-height:100vh;
+    }
+
     /* SIDEBAR */
     .sidebar{
       width:240px;
@@ -18,9 +44,32 @@
       line-height:1.3;
     }
 
-    
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:#666;
+      padding:12px 15px;
+      margin-bottom:8px;
+      border-radius:10px;
+      transition:.3s;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      background:#ede7ff;
+      color:#4b2ad6;
+    }
+
     /* MAIN */
     .main{
+       
+      background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
+  url('assets/fondo1.webp');
+      
+      background-size: cover;
+      
       flex:1;
       padding:25px;
     }
@@ -100,6 +149,7 @@
     .panel h3{
       margin-bottom:15px;
       color:#444;
+      text-align: center;
     }
 
     .shipment-item,
@@ -126,7 +176,14 @@
     }
 
     @media(max-width:700px){
-     
+      .container{
+        flex-direction:column;
+      }
+
+      .sidebar{
+        width:100%;
+      }
+
       .cards{
         grid-template-columns:1fr;
       }
@@ -142,11 +199,53 @@
         color: gray;
         font-size: 13px
     }
+    .btn-ventas{
+      width:100%;
+      padding:14px;
+      background:#fff;
+      color:black;
+      border:solid;
+      border-color: #dddddd;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      margin-bottom:15px;
+    }
+    .valor{
+      text-align: center;
+      color:#4b2ad6;
+      font-size: 80px;
+
+    }
   </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="logo"><img src="assets/logo-pasoc.webp" width="200"></div>
+
+    <div class="menu">
+      <a href="home_cliente.html" class="active"><i class="fa fa-house"></i> Home</a>
+      <a href="chat2.html"><i class="fa fa-message"></i> Chat</a>
+      <a href="{{ url('/envios_cliente') }}" ><i class="fa fa-box"></i> Envios</a>
+      <a href="configuracion_cliente.html"><i class="fa fa-user"></i> Configuracion</a>
+      <form action="{{ url('/logout') }}" method="POST" style="display:inline;">
+          @csrf
+          <button type="submit" style="background:none;border:none;color:inherit;cursor:pointer;">
+              <i class="fa fa-sign-out"></i> Cerrar sesión
+          </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN -->
   <div class="main">
 
     <div class="topbar">
-      <h1>Analytics </h1>
+      <h1>Bienvenido </h1><h1 style="margin-left:10px;"> {{session('usuario_username')}}</h1> 
       <div class="search-box" style="margin-left: 10px;">
         <input type="text" placeholder="Search anything here...">
         <i class="fa fa-search"></i>
@@ -154,59 +253,25 @@
     </div>
 
     <!-- CARDS -->
-    <div class="cards">
-      <div class="card">
-        <h4>Gastos</h4>
-        <p>$1,567.99</p>
-        <label class="subtitulo">WE, jul, 2020</label>
-      </div>
-      <div class="card">
-        <h4>Ingresos</h4>
-        <p>$2,868.99</p>
-        <label class="subtitulo">WE, jul, 2020</label>
-      </div>
-      <div class="card">
-        <h4>Envíos</h4>
-        <p>156k</p>
-        <label class="subtitulo">WE, jul, 2020</label>
-      </div>
-      <div class="card">
-        <h4>Clientes</h4>
-        <p>3,422</p>
-        <label class="subtitulo">WE, jul, 2020</label>
-      </div>
-    </div>
+
 
     <!-- TOP GRID -->
     <div class="grid">
       <div class="panel">
-        <h3>Ventas</h3>
+        <h3>Pedidos este mes</h3>
         <canvas id="salesChart"></canvas>
       </div>
 
       <div class="panel">
-        <h3>Envíos</h3>
-        <div class="shipment-item"><span><i class="fa fa-plane"></i>Aéreos</span><span>96.42%</span></div>
-        <div class="shipment-item"><span><i class="fa fa-truck"></i>Terrestres</span><span>2.76%</span></div>
-        <div class="shipment-item"><span><i class="fa fa-ship"></i>Barco</span><span>20.76%</span></div>
+        <h3>Ulltimo Pedido</h3>
+        <div class="shipment-item"><span class="valor">Lima</span></div>
+       <a href="envios_cliente.html" class="btn-ventas">Ir a Envios</a>
+        
       </div>
     </div>
 
     <!-- BOTTOM GRID -->
-    <div class="grid">
-      <div class="panel">
-        <h3>Egresos e ingresos</h3>
-        <canvas id="incomeChart"></canvas>
-      </div>
 
-      <div class="panel">
-        <h3>Últimos envíos</h3>
-        <div class="country-item"><span>Pakistan</span><span>54%</span></div>
-        <div class="country-item"><span>Germany</span><span>32%</span></div>
-        <div class="country-item"><span>USA</span><span>27%</span></div>
-        <div class="country-item"><span>Spain</span><span>25%</span></div>
-      </div>
-    </div>
 
   </div>
 </div>
@@ -216,9 +281,7 @@
   new Chart(document.getElementById('salesChart'), {
     type: 'line',
     data: {
-      labels: [<?php foreach ($data['variable'] as $key) {
-        echo "'".$key['value']."',";
-      }?>'10','11','12','13','14','15','16','17'],
+      labels: ['10','11','12','13','14','15','16','17'],
       datasets: [{
         label: 'Ventas',
         data: [40, 42, 65, 44, 58, 55, 80, 50],
