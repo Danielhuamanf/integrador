@@ -18,7 +18,8 @@ class AlmacenModel extends Model
         'numero_responsable',
         'tipo',
         'estado',
-        'capacidad_m3'
+        'capacidad_m3',
+        'id_zona'
     ];
 
     // =========================
@@ -26,6 +27,14 @@ class AlmacenModel extends Model
     // =========================
 
     // Envíos donde es almacén de origen
+    public function zona()
+    {
+        return $this->belongsTo(
+            ZonasModel::class,
+            'id_zona',
+            'id_zona'
+        );
+    }
     public function enviosOrigen()
     {
         return $this->hasMany(Envio::class, 'id_almacen_origen');

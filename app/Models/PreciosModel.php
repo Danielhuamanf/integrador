@@ -13,12 +13,19 @@ class PreciosModel extends Model
 
     protected $fillable = [
         'id_zona_origen',
-        'id_zona_destino',
+        'id_zona_dest', 
         'peso_base',
         'peso_tope',
         'alto_base',
         'alto_tope',
-        'precio'
+        'ancho_base',
+        'ancho_tope',
+        'largo_base',
+        'largo_tope',
+        'moneda',
+        'tipo_envio',
+        'monto',
+        'created_at','updated_at'
     ];
 
     // =========================
@@ -27,12 +34,12 @@ class PreciosModel extends Model
 
     public function zonaOrigen()
     {
-        return $this->belongsTo(Zona::class, 'id_zona_origen');
+        return $this->belongsTo(ZonasModel::class, 'id_zona_origen');
     }
 
     public function zonaDestino()
     {
-        return $this->belongsTo(Zona::class, 'id_zona_destino');
+        return $this->belongsTo(ZonasModel::class, 'id_zona_dest');
     }
 
     // =========================
@@ -40,14 +47,34 @@ class PreciosModel extends Model
     // =========================
 
     // Buscar tarifa aplicable
-    public function scopeTarifa($query, $origen, $destino, $peso, $alto)
-    {
-        return $query
-            ->where('id_zona_origen', $origen)
-            ->where('id_zona_destino', $destino)
-            ->where('peso_base', '<=', $peso)
-            ->where('peso_tope', '>=', $peso)
-            ->where('alto_base', '<=', $alto)
-            ->where('alto_tope', '>=', $alto);
+    public function scopeTarifa(
+        $query,
+        $origen,
+        $destino,
+        $peso,
+        $alto,
+        $ancho,
+        $largo,
+        $tipoEnvio
+    ) {
+         return $query
+
+        ->where('id_zona_origen', $origen)
+
+        ->where('id_zona_dest', $destino)
+
+        ->where('tipo_envio', $tipoEnvio)
+
+        ->where('peso_base', '<=', $peso)
+        ->where('peso_tope', '>=', $peso)
+
+        ->where('alto_base', '<=', $alto)
+        ->where('alto_tope', '>=', $alto)
+
+        ->where('ancho_base', '<=', $ancho)
+        ->where('ancho_tope', '>=', $ancho)
+
+        ->where('largo_base', '<=', $largo)
+        ->where('largo_tope', '>=', $largo);
     }
 }

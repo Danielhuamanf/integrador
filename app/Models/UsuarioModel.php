@@ -23,15 +23,16 @@ class UsuarioModel extends Authenticatable
         'updated_at',
         'created_at'
     ];
+    /*
     protected static function booted()
     {
         static::created(function ($usuario) {
 
-            \DB::connection('sqlite_backup')
+            DB::connection('sqlite_backup')
                 ->table('usuarios')
                 ->insert([
-                    'id' => $usuario->id,
-                    'nombre' => $usuario->nombre,
+                    'id_usuario' => $usuario->id,
+                    'username' => $usuario->nombre,
                     'correo' => $usuario->correo,
                     'password' => $usuario->password,
                     'created_at' => now(),
@@ -39,10 +40,8 @@ class UsuarioModel extends Authenticatable
                 ]);
 
         });
-    }
-    protected $hidden = [
-        'password'
-    ];
+    }*/
+   
 
     // =========================
     // RELACIONES

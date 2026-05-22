@@ -15,7 +15,8 @@ class DocumentosModel extends Model
         'id_envio',
         'nombre_doc',
         'url_documento',
-        'descripcion_doc'
+        'descripcion_doc',
+        'created_at'
     ];
 
     // =========================
@@ -25,6 +26,6 @@ class DocumentosModel extends Model
     // Documento pertenece a un envío
     public function envio()
     {
-        return $this->belongsTo(Envio::class, 'id_envio');
+        return $this->belongsTo(EnvioModel::class, 'id_envio');
     }
 }

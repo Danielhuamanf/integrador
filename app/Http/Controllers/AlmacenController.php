@@ -2,37 +2,79 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\Usuario;
-class Controller2 extends Controller
+use App\Models\EnvioModel;
+use App\Models\AlmacenModel;
+use App\Models\ZonasModel;
+class AlmacenController extends Controller
 {
-   public function index()
+    public function index()
     {
-        $usuarios = Usuario::all();
-        return view('usuarios.index', compact('usuarios'));
+         $almacenes = AlmacenModel::with('zona')->get();
+
+        $zonas = ZonasModel::all();
+
+        $data = [
+            'url' => 'almacen'
+        ];
+
+        
+        return view('admin.almacenes', compact('almacenes','zonas','data'));
     }
 
-    // FORM CREAR
-    public function create()
-    {
-        return view('usuarios.create');
-    }
-
-    // GUARDAR
     public function store(Request $request)
     {
-        Usuario::create([
-            'username' => $request->username,
-            'password' => $request->password,
-            'saldo' => $request->saldo
-        ]);
+        AlmacenModel::create($request->all());
 
-        return redirect()->route('usuarios.index');
+        return redirect()->back()->with('success', 'Almacén registrado');
     }
 
-    // ELIMINAR
+    public function update(Request $request, $id)
+    {
+        $almacen = AlmacenModel::findOrFail($id);
+
+        $almacen->update($request->all());
+
+        return redirect()->back()->with('success', 'Almacén actualizado');
+    }
     public function destroy($id)
     {
-        Usuario::findOrFail($id)->delete();
-        return redirect()->route('usuarios.index');
+        AlmacenModel::destroy($id);
+
+        return redirect()->back()->with('success', 'Almacén eliminado');
+    }
+
+   public function productos($id)
+    {
+
+        $almacen = AlmacenModel::findOrFail($id);
+
+        $productos = EnvioModel::where(function($query) use ($id){
+
+            $query->where(function($q) use ($id){
+
+                $q->where('estado', 'pendiente')
+                  ->where('id_almacen_origen', $id);
+
+            })
+
+            ->orWhere(function($q) use ($id){
+
+                $q->where('estado', 'en almacen')
+                  ->where('id_almacen_destino', $id);
+
+            });
+
+        })->get();
+         $data = ['url'=>'almacen'];
+        return view('admin.almacenes_productos',compact('almacen', 'productos','data') );
+
+    }
+    public function porZona($id)
+    {
+        $almacenes = AlmacenModel::where('id_zona', $id)
+                        ->where('estado', 1)
+                        ->get();
+
+        return response()->json($almacenes);    
     }
 }

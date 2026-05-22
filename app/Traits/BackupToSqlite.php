@@ -13,7 +13,6 @@ trait BackupToSqlite
             DB::connection('sqlite_backup')
                 ->table($model->getTable())
                 ->insert($model->toArray());
-
         });
     }
 }

@@ -6,7 +6,12 @@ use App\Models\UsuarioModel;
 use App\Models\leadsModel;
 class AdminController extends Controller
 {
-   public function home()
+    public function home()
+    {
+        $data = ['url'=>'home','variable'=>[]];
+        return view('admin.home', compact('data'));
+    }
+    public function dashboard()
     {
         $data = ['url'=>'dashboard','variable'=>[]];
         return view('admin.dashboard', compact('data'));
@@ -40,5 +45,10 @@ class AdminController extends Controller
     {
         Usuario::findOrFail($id)->delete();
         return redirect()->route('usuarios.index');
+    }
+      public function logout()
+    {
+        session()->flush();
+        return redirect('/login');
     }
 }

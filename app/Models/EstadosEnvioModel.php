@@ -22,12 +22,12 @@ class EstadosEnvioModel extends Model
     // Un estado puede estar en muchos envíos
     public function envios()
     {
-        return $this->hasMany(Envio::class, 'estado');
+        return $this->hasMany(EnvioModel::class, 'estado');
     }
 
     // Un estado puede estar en muchos eventos de tracking
     public function tracking()
     {
-        return $this->hasMany(Tracking::class, 'id_estado');
+        return $this->hasMany(TrackingModel::class, 'id_estado');
     }
 }

@@ -2,37 +2,36 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\Usuario;
+use App\Models\EnvioModel;
 class EnvioController extends Controller
 {
    public function index()
     {
-        $usuarios = Usuario::all();
-        return view('usuarios.index', compact('usuarios'));
+        
     }
-
-    // FORM CREAR
-    public function create()
+     public function detalle($id)
     {
-        return view('usuarios.create');
-    }
+            $data = ['url' => 'documentos'];
+        $envio = EnvioModel::with([
+            'cliente',
+            'detalles',
+            'tracking',
+            'documentos',
+            'pagos',
+            'costos',
+            'dam'
+        ])->findOrFail($id);
 
-    // GUARDAR
-    public function store(Request $request)
-    {
-        Usuario::create([
-            'username' => $request->username,
-            'password' => $request->password,
-            'saldo' => $request->saldo
-        ]);
+        $totalCostos = $envio->costos->sum('monto');
+        $totalPagado = $envio->pagos->sum('monto');
+        $saldoPendiente = $totalCostos - $totalPagado;
 
-        return redirect()->route('usuarios.index');
+        return view('admin.order_detail', compact(
+            'envio',
+            'totalCostos',
+            'totalPagado',
+            'saldoPendiente','data'
+        ));
     }
-
-    // ELIMINAR
-    public function destroy($id)
-    {
-        Usuario::findOrFail($id)->delete();
-        return redirect()->route('usuarios.index');
-    }
+   
 }
