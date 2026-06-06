@@ -42,4 +42,5 @@ class TrackingModel extends Model
     {
         return $this->belongsTo(AlmacenModel::class, 'id_almacen');
     }
+    
 }

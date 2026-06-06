@@ -19,7 +19,7 @@ class GeneralController extends Controller
             'correo'   => $request->correo,
             'telefono'   => $request->telefono,
             'estado'   => 0,
-            'mensaje'   => $request->nombre
+            'mensaje'   => $request->mensaje
         ]);
 
         return redirect('/')->with('success', 'Usuario registrado correctamente');

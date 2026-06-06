@@ -12,6 +12,9 @@ use App\Http\Controllers\DocumentosController;
 use App\Http\Controllers\EnvioController;
 use App\Http\Controllers\PrecioController;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Api\RollbackController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\SolicitudController;
 
 Route::get('/test-sqlite', function () {
 
@@ -22,6 +25,9 @@ Route::get('/test-sqlite', function () {
 });
 //cliente
 Route::get('/envios_cliente', [ClienteController::class, 'envios_cliente']);
+Route::get('/detalle_orden/{id}', [ClienteController::class, 'detalle_orden'])->name('detalle_orden.show');
+Route::get('/configuracion', [ClienteController::class, 'configuracion'])->name('configuracion');
+Route::post('/configuracion/update',[ClienteController::class, 'updateConfiguracion'])->name('cliente.configuracion.update');
 /*
 Route::get('/usuarios', [Controller2::class, 'index'])->name('usuarios.index');
 Route::get('/usuarios/create', [Controller2::class, 'create'])->name('usuarios.create');
@@ -42,7 +48,7 @@ Route::get('/login', [UsuarioController::class, 'login'])->name('login');
 Route::get('/register', [UsuarioController::class, 'register']);
 
 Route::post('/loginpost', [UsuarioController::class, 'loginpost']);
-Route::post('/logout', [UsuarioController::class, 'logout']);
+Route::get('/logout', [AdminController::class, 'logout']);
 
 //admin
 Route::middleware(['admin'])->group(function () {
@@ -143,3 +149,25 @@ Route::post('precios/store',[PrecioController::class,'store'])->name('precios.st
 Route::put('precios/update/{id}',[PrecioController::class,'update'])->name('precios.update');
 
 Route::delete('precios/delete/{id}',[PrecioController::class,'destroy'])->name('precios.destroy');
+
+//chat
+
+Route::get('/chat/cliente', [ChatController::class, 'vistaCliente']);
+
+Route::get('/chat/admin', [ChatController::class, 'vistaAdmin']);
+Route::get('/chat/conversaciones', [ChatController::class, 'conversaciones']);
+Route::get('/chat/mensajes/{id}', [ChatController::class, 'mensajes']);
+Route::post('/chat/enviar', [ChatController::class, 'enviar']);
+// opcional performance
+Route::get('/chat/nuevos/{id}/{ultimo}', [ChatController::class, 'nuevos']);
+//rollback
+Route::post('/rollback', [RollbackController::class, 'rollback']);
+
+//solistud 
+Route::get('/solicitudes',[SolicitudController::class,'index_cliente']);
+Route::get('/solicitudes/nueva',[SolicitudController::class,'create_cliente']);
+Route::post('/solicitudes',[SolicitudController::class,'store']);
+
+Route::get('/operador/solicitudes',[SolicitudController::class,'indexOperador']);
+
+Route::post('/operador/solicitudes/procesar',[SolicitudController::class,'procesar']);

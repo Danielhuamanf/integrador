@@ -92,6 +92,7 @@
       <a href="{{ url('/ver_clientes') }}" class="{{ $data['url'] == 'clientes' ? 'active' : '' }}"><i class="fa fa-user-circle"></i> Clientes</a>
       <a href="{{ url('/ver_usuarios') }}" class="{{ $data['url'] == 'usuarios' ? 'active' : '' }}"><i class="fa fa-users"></i> Usuarios</a>
       <a href="{{ url('/ver_leads') }}" class="{{ $data['url'] == 'leads' ? 'active' : '' }}"><i class="fa fa-user-plus"></i> Leads</a>
+      <a href="{{ url('/chat/admin') }}" class="{{ $data['url'] == 'Chat' ? 'active' : '' }}"><i class="fa fa-message"></i>Chats</a>
       <a href="{{ url('/logout_admin') }}" class="{{ $data['url'] == 'logout' ? 'active' : '' }}"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
     </div>
   </div>  

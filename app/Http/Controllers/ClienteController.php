@@ -1,8 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use App\Models\EnvioModel;
 use App\Models\ClienteModel;
+use App\Models\DamModel;
+use App\Models\DamCostosModel;
+use App\Models\CostoEnvioModel;
+use App\Models\UsuarioModel;
+use Illuminate\Support\Facades\Hash;
+
 class ClienteController extends Controller
 {
      public function home()
@@ -13,16 +19,182 @@ class ClienteController extends Controller
     }
     public function envios_cliente()
     {
-        $clientes = ClienteModel::all();
-         $data = ['url'=>'clientes'];
-        return view('cliente.envios_cliente', compact('clientes','data'));
+        $idUsuario = session('usuario_id');
+        $cliente = ClienteModel::where('id_usuario', $idUsuario)->first();
+        $idCliente = $cliente['id_cliente'];
+         $ordenes = EnvioModel::with([
+
+            'tracking.estado',
+            'zonaOrigen',
+            'zonaDestino',
+            'costos'
+
+        ])
+        ->where('id_cliente', $idCliente)
+        ->orderBy('id_envio', 'desc')
+        ->paginate(10);
+
+        
+         $data = ['url'=>'envios'];
+        // print_r($idCliente);
+        return view('cliente.envios_cliente', compact('ordenes','data'));
     }
+    public function configuracion(){
+        $idUsuario = session('usuario_id');
+        $usuario = UsuarioModel::where('id_usuario', $idUsuario)->first();
+        $cliente = ClienteModel::where('id_usuario', $idUsuario)->first();
+         $data = ['url'=>'configuracion'];
+        // print_r($idCliente);
+        return view('cliente.configuracion_cliente', compact('cliente','usuario','data'));
+    }
+    public function updateConfiguracion(Request $request)
+    {
+
+       
+        $idUsuario = session('usuario_id');
+
+        $usuario = UsuarioModel::where(
+            'id_usuario',
+            $idUsuario
+        )->first();
+
+       
+
+        $cliente = ClienteModel::where(
+            'id_usuario',
+            $idUsuario
+        )->first();
+
+    
+        $request->validate([
+
+            'telefono' => 'required',
+
+            'direccion' => 'required',
+
+            'correo' => 'required|email',
+
+            'password_actual' => 'nullable',
+
+            'password_nuevo' =>
+                'nullable|min:8|same:password_confirmacion'
+
+        ]);
+
+       
+
+        if($request->password_actual){
+
+            if(
+                !Hash::check(
+                    $request->password_actual,
+                    $usuario->password
+                )
+            ){
+
+                return back()->with(
+                    'error',
+                    'La contraseña actual es incorrecta'
+                );
+
+            }
+
+            $usuario->password = Hash::make(
+                $request->password_nuevo
+            );
+
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | ACTUALIZAR USUARIO
+        |--------------------------------------------------------------------------
+        */
+
+        $usuario->correo =
+            $request->correo;
+
+        $usuario->save();
+
+        /*
+        |--------------------------------------------------------------------------
+        | ACTUALIZAR CLIENTE
+        |--------------------------------------------------------------------------
+        */
+
+        if($cliente){
+
+            $cliente->telefono =
+                $request->telefono;
+
+            $cliente->direccion =
+                $request->direccion;
+
+            $cliente->correo =
+                $request->correo;
+
+            $cliente->save();
+
+        }
+
+        return back()->with(
+            'success',
+            'Configuración actualizada correctamente'
+        );
+
+    }
+    public function detalle_orden($id)
+    {
+        $envio = EnvioModel::with([
+            'cliente',
+            'detalle',
+            'tracking.estado',
+            'dam',
+            'documentos'
+        ])->findOrFail($id);
+
+        $costosEnvio = CostoEnvioModel::where(
+            'id_envio',
+            $id
+        )->get();
+
+        $dam = DamModel::where(
+            'id_envio',
+            $id
+        )->first();
+
+        $costosDam = [];
+
+        if($dam){
+
+            $costosDam = DamCostosModel::where(
+                'id_dam',
+                $dam->id_dam
+            )->get();
+
+        }
+        $data = [
+            'url' => 'envios'
+        ];
+        return view(
+            'cliente..detalle_orden',
+            compact(
+                'envio',
+                'costosEnvio',
+                'costosDam',
+                'dam','data'
+            )
+        );
+       
+    }
+    //admin
     public function ver_clientes()
     {
         $clientes = ClienteModel::all();
          $data = ['url'=>'clientes'];
         return view('admin.clientes', compact('clientes','data'));
     }
+    
     // GUARDAR
    public function guardar_cliente(Request $request)
     {
