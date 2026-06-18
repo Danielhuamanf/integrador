@@ -66,12 +66,38 @@ class ChatController extends Controller
     /* =========================
        ENVIAR MENSAJE
     ========================= */
+    public function contienePalabrasObscenas($texto)
+    {
+        $palabrasProhibidas = [
+            'mierda',
+            'puta',
+            'puto',
+            'carajo',
+            'coño',
+            'pendejo',
+            'idiota'
+        ];
+
+        $texto = mb_strtolower($texto);
+
+        foreach ($palabrasProhibidas as $palabra) {
+            if (strpos($texto, $palabra) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     public function enviar(Request $request)
     {
+        $palabra = $request->mensaje;
+        if ($this->contienePalabrasObscenas($palabra)) {
+            $palabra ="palabra obscena";
+        }
         MensajesModel::create([
             'id_emisor' => session('usuario_id'),
             'id_receptor' => $request->id_receptor,
-            'mensaje' => $request->mensaje,
+            'mensaje' => $palabra,
             'estado' => 0
         ]);
 

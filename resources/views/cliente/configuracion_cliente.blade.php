@@ -151,7 +151,19 @@
     }
 
 }
+.form-group select{
+    width:100%;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    background:#fafafa;
+    outline:none;
+}
 
+.form-group select:focus{
+    border-color:#6c3ce9;
+    background:#fff;
+}
 </style>
 
 <div class="main">
@@ -222,7 +234,122 @@
                     Actualiza tus datos personales y seguridad.
 
                 </p>
+                <div class="form-group">
 
+                    <label>
+                        Tipo de Persona
+                    </label>
+
+                    <select
+                        name="tipo_persona"
+                        id="tipo_persona"
+                    >
+                        <option value="natural"
+                            {{ old('tipo_persona', $cliente->tipo_persona) == 'natural' ? 'selected' : '' }}>
+                            Persona Natural
+                        </option>
+
+                        <option value="empresa"
+                            {{ old('tipo_persona', $cliente->tipo_persona) == 'empresa' ? 'selected' : '' }}>
+                            Empresa
+                        </option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+
+                    <label>
+                        Nombre Completo
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nombre_completo"
+                        value="{{ old('nombre_completo', $cliente->nombre_completo ?? '') }}"
+                        placeholder="Nombre completo"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        DNI
+                    </label>
+
+                    <input
+                        type="text"
+                        name="dni"
+                        value="{{ old('dni', $cliente->dni ?? '') }}"
+                        placeholder="DNI"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Ubigeo
+                    </label>
+
+                    <input
+                        type="text"
+                        name="ubigeo"
+                        value="{{ old('ubigeo', $cliente->ubigeo ?? '') }}"
+                        placeholder="Ubigeo"
+                    >
+
+                </div>
+                <div id="empresa-fields">
+               
+                
+                <div class="form-group">
+
+                    <label>
+                        RUC
+                    </label>
+
+                    <input
+                        type="text"
+                        name="ruc"
+                        value="{{ old('ruc', $cliente->ruc ?? '') }}"
+                        placeholder="RUC"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Nombre Comercial
+                    </label>
+
+                    <input
+                        type="text"
+                        name="nombre_comercial"
+                        value="{{ old('nombre_comercial', $cliente->nombre_comercial ?? '') }}"
+                        placeholder="Nombre Comercial"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Representante Legal
+                    </label>
+
+                    <input
+                        type="text"
+                        name="representante_legal"
+                        value="{{ old('representante_legal', $cliente->representante_legal ?? '') }}"
+                        placeholder="Representante Legal"
+                    >
+
+                </div>
+                
+            
+            </div>
                 <div class="form-group">
 
                     <label>
@@ -351,4 +478,21 @@
 </div>
 
 </body>
+<script>
+function toggleEmpresa() {
+
+    let tipo = document.getElementById('tipo_persona').value;
+
+    document.getElementById('empresa-fields').style.display =
+        tipo === 'empresa'
+            ? 'block'
+            : 'none';
+}
+
+document
+    .getElementById('tipo_persona')
+    .addEventListener('change', toggleEmpresa);
+
+toggleEmpresa();
+</script>
 </html>

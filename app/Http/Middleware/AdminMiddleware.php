@@ -17,7 +17,7 @@ class AdminMiddleware
 
         // Verificar rol admin
         if (session('usuario_rol') != 1) {
-            return redirect('/home_cliente');
+            return redirect('/login');
         }
 
         return $next($request);

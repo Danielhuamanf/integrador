@@ -42,7 +42,7 @@ class UsuarioModel extends Authenticatable
         return $this->hasMany(Mensaje::class, 'id_usuario');
     }
     public function getAuthIdentifierName()
-{
+    {
     return 'id_usuario';
-}
+    }
 }

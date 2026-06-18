@@ -53,56 +53,80 @@ class ClienteController extends Controller
        
         $idUsuario = session('usuario_id');
 
-        $usuario = UsuarioModel::where(
-            'id_usuario',
-            $idUsuario
-        )->first();
+        $usuario = UsuarioModel::find($idUsuario);
 
-       
+        if (!$usuario) {
+            return back()->with(
+                'error',
+                'Usuario no encontrado'
+            );
+        }
 
         $cliente = ClienteModel::where(
             'id_usuario',
             $idUsuario
         )->first();
 
-    
-        $request->validate([
+       $request->validate([
+            'tipo_persona' => 'required|in:natural,empresa',
 
-            'telefono' => 'required',
-
-            'direccion' => 'required',
-
+            'nombre_completo' => 'required|max:150',
             'correo' => 'required|email',
+            'telefono' => 'required|max:20',
+            'direccion' => 'required|max:255',
+
+            'dni' => 'nullable|max:20',
+            'ubigeo' => 'nullable|max:20',
+            'ruc' => 'nullable|max:20',
+            'nombre_comercial' => 'nullable|max:150',
+            'representante_legal' => 'nullable|max:150',
 
             'password_actual' => 'nullable',
-
-            'password_nuevo' =>
-                'nullable|min:8|same:password_confirmacion'
-
+            'password_nuevo' => 'nullable|min:8|same:password_confirmacion',
         ]);
 
-       
+        /*
+        |--------------------------------------------------------------------------
+        | CAMBIO DE CONTRASEÑA
+        |--------------------------------------------------------------------------
+        */
 
-        if($request->password_actual){
+        if ($request->filled('password_nuevo')) {
 
-            if(
+            if (!$request->filled('password_actual')) {
+                return back()->with(
+                    'error',
+                    'Debe ingresar la contraseña actual'
+                );
+            }
+
+            if (
                 !Hash::check(
                     $request->password_actual,
                     $usuario->password
                 )
-            ){
-
+            ) {
                 return back()->with(
                     'error',
                     'La contraseña actual es incorrecta'
                 );
+            }
 
+            if (
+                Hash::check(
+                    $request->password_nuevo,
+                    $usuario->password
+                )
+            ) {
+                return back()->with(
+                    'error',
+                    'La nueva contraseña debe ser diferente a la actual'
+                );
             }
 
             $usuario->password = Hash::make(
                 $request->password_nuevo
             );
-
         }
 
         /*
@@ -111,9 +135,7 @@ class ClienteController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        $usuario->correo =
-            $request->correo;
-
+        $usuario->correo = $request->correo;
         $usuario->save();
 
         /*
@@ -122,26 +144,25 @@ class ClienteController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        if($cliente){
-
-            $cliente->telefono =
-                $request->telefono;
-
-            $cliente->direccion =
-                $request->direccion;
-
-            $cliente->correo =
-                $request->correo;
+        if ($cliente) {
+            $cliente->tipo_persona = $request->tipo_persona;
+            $cliente->nombre_completo = $request->nombre_completo;
+            $cliente->correo = $request->correo;
+            $cliente->telefono = $request->telefono;
+            $cliente->direccion = $request->direccion;
+            $cliente->ubigeo = $request->ubigeo;
+            $cliente->dni = $request->dni;
+            $cliente->ruc = $request->ruc;
+            $cliente->nombre_comercial = $request->nombre_comercial;
+            $cliente->representante_legal = $request->representante_legal;
 
             $cliente->save();
-
         }
 
         return back()->with(
             'success',
             'Configuración actualizada correctamente'
         );
-
     }
     public function detalle_orden($id)
     {

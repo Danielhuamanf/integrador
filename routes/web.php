@@ -163,11 +163,24 @@ Route::get('/chat/nuevos/{id}/{ultimo}', [ChatController::class, 'nuevos']);
 //rollback
 Route::post('/rollback', [RollbackController::class, 'rollback']);
 
-//solistud 
-Route::get('/solicitudes',[SolicitudController::class,'index_cliente']);
+//solicitud
+Route::get('/solicitudes',[SolicitudController::class,'index_cliente'])->name('solicitudes');
 Route::get('/solicitudes/nueva',[SolicitudController::class,'create_cliente']);
 Route::post('/solicitudes',[SolicitudController::class,'store']);
-
 Route::get('/operador/solicitudes',[SolicitudController::class,'indexOperador']);
-
+Route::get('/solicitudes/ver/{id}',[SolicitudController::class,'ver'])->name('solicitudes.ver');
 Route::post('/operador/solicitudes/procesar',[SolicitudController::class,'procesar']);
+Route::post('/cliente/solicitudes',[SolicitudController::class,'post_procesar_solicitud_cliente']);
+
+Route::get('/admin/solicitudes/{id}',[SolicitudController::class,'ver'])->name('solicitudes.ver');
+Route::get('/admin/solicitudes/{id}/estado', [SolicitudController::class,'estado'])->name('solicitudes.estado');
+Route::post('/admin/solicitudes/actualizar-estado',[SolicitudController::class,'actualizarEstado'])->name('solicitudes.actualizarEstado');
+Route::post('/solicitudes/ajax/estado',[SolicitudController::class,'actualizarEstadoAjax'])->name('solicitudes.ajax.estado');
+
+
+//solictud contraseña
+Route::get('/recuperar_contraseña',[SolicitudController::class,'recuperar_password']);
+Route::post('/solicitar-cambio-password',[SolicitudController::class,'solicitar_cambio_password'])->name('password.solicitar');
+Route::get('/admin/cambios-password',[SolicitudController::class,'index_admin_password'])->name('password.index');
+Route::get('/admin/cambios-password/{id}/aprobar',[SolicitudController::class,'aprobar'])->name('password.aprobar');
+Route::get('/admin/cambios-password/{id}/rechazar',[SolicitudController::class,'rechazar'])->name('password.rechazar');

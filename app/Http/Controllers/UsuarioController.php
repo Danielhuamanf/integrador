@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UsuarioModel;
+use App\Models\ClienteModel;
 use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
@@ -70,7 +71,13 @@ class UsuarioController extends Controller
             'username'   => $request->username,
             'correo'   => $request->correo,
             'password' => Hash::make($request->password),
-            'rol'      => 3
+            'rol'      => 0
+        ]);
+        $cliente = ClienteModel::create([
+            'id_usuario' =>$usuario->id_usuario,
+            'nombre_completo'   => $request->username,
+            'correo'   => $request->correo,
+            
         ]);
 
         return redirect('/login')->with('success', 'Usuario registrado correctamente');

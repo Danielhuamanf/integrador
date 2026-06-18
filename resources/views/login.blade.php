@@ -185,7 +185,7 @@
 
           <div class="forgot"> 
               <a href="{{ url('/') }}">Regresar</a>
-              <a href="#">Olvidé la contraseña</a>
+              <a href="{{ url('/recuperar_contraseña') }}">Olvidé la contraseña</a>
           </div>
 
           <button class="btn-login" type="submit">Login</button>

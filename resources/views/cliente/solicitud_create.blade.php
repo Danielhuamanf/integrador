@@ -88,108 +88,172 @@ cursor:pointer;
 
 <div class="main">
 
-<div class="card">
+	<div class="card">
 
-<h1>Nueva Solicitud</h1>
+		<h1>Nueva Solicitud</h1>
 
-<form
-method="POST"
-action="/cliente/solicitudes">
+		<form method="POST" action="{{url('cliente/solicitudes')}}">
 
-@csrf
+			@csrf
+			<div class="group">
 
-<div class="group">
+			    <label>Envío</label>
 
-<label>Envío</label>
+			    <select name="id_envio" required>
 
-<select
-name="id_envio"
-required>
+			        <option value="">
+			            Seleccione
+			        </option>
 
-<option value="">
+			        @foreach($envios as $envio)
 
-Seleccione
+			        <option value="{{ $envio->id_envio }}">
 
-</option>
+			            ENV-{{ $envio->id_envio }}
+			            - {{ $envio->tipo_envio }}
 
-@foreach($envios as $envio)
+			        </option>
 
-<option
-value="{{ $envio->id_envio }}">
+			        @endforeach
 
-ENV-
-{{ $envio->id_envio }}
+			    </select>
 
-—
+			</div>
+			<div class="group">
 
-{{ $envio->tipo_envio }}
+			    <label>Tipo de Solicitud</label>
 
-</option>
+			    <select name="tipo" id="tipo" required>
 
-@endforeach
+			        <option value="">Seleccione</option>
 
-</select>
+			        <option value="tracking">
+			            Estado Tracking
+			        </option>
 
-</div>
+			        <option value="estado_envio">
+			            Estado Envío
+			        </option>
 
-<div class="group">
+			        <option value="dam">
+			            Consulta DAM
+			        </option>
 
-<label>Tipo de Solicitud</label>
+			        <option value="documentos">
+			            Solicitar Documentos
+			        </option>
 
-<select
-name="tipo">
+			    </select>
 
-<option value="tracking">
+			</div>
+			<div id="campos_dinamicos"></div>
+			<button  type="submit" class="btn btn-primary">Enviar</button>
+		</form>
 
-Estado Tracking
-
-</option>
-
-<option value="estado_envio">
-
-Estado Envío
-
-</option>
-
-<option value="dam">
-
-Consulta DAM
-
-</option>
-
-<option value="documentos">
-
-Solicitar Documentos
-
-</option>
-
-</select>
+	</div>
 
 </div>
+<script>
 
-<div class="group">
+const tipo = document.getElementById('tipo');
+const contenedor = document.getElementById('campos_dinamicos');
 
-<label>Detalle</label>
+function renderizarCampos()
+{
+    let html = '';
 
-<textarea
-name="motivo"
-required>
-</textarea>
+    switch(tipo.value)
+    {
+        case 'tracking':
 
-</div>
+            html = `
+            <div class="group">
+                <label>Número Tracking</label>
+                <input type="text" name="numero_tracking">
+            </div>
 
-<button
-class="btn">
+            <div class="group">
+                <label>Consulta Tracking</label>
+                <textarea name="descripcion_tracking"></textarea>
+            </div>
+            `;
+        break;
 
-Registrar Solicitud
+        case 'estado_envio':
 
-</button>
+            html = `
+            <div class="group">
+                <label>Consulta Estado Envío</label>
+                <textarea name="descripcion_estado_envio"></textarea>
+            </div>
+            `;
+        break;
 
-</form>
+        case 'dam':
 
-</div>
+            html = `
+            <div class="group">
+                <label>Número DAM</label>
+                <input type="text" name="numero_dam">
+            </div>
 
-</div>
+            <div class="group">
+                <label>Año DAM</label>
+                <input type="text" name="anio_dam">
+            </div>
 
+            <div class="group">
+                <label>Detalle Consulta DAM</label>
+                <textarea name="descripcion_dam"></textarea>
+            </div>
+            `;
+        break;
+
+        case 'documentos':
+
+            html = `
+            <div class="group">
+                <label>Documento Solicitado</label>
+
+                <select name="tipo_documento">
+
+                    <option value="DAM">
+                        DAM
+                    </option>
+
+                    <option value="BL">
+                        BL
+                    </option>
+
+                    <option value="FACTURA">
+                        Factura Comercial
+                    </option>
+
+                    <option value="PACKING LIST">
+                        Packing List
+                    </option>
+
+                    <option value="CERTIFICADO">
+                        Certificado de Origen
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="group">
+                <label>Observación</label>
+                <textarea name="descripcion_documento"></textarea>
+            </div>
+            `;
+        break;
+    }
+
+    contenedor.innerHTML = html;
+}
+
+tipo.addEventListener('change', renderizarCampos);
+
+</script>
 </body>
 </html>
