@@ -73,12 +73,12 @@ class EnvioModel extends Model
     // Zonas
     public function zonaOrigen()
     {
-        return $this->belongsTo(ZonaModel::class, 'id_zona_origen');
+        return $this->belongsTo(ZonasModel::class, 'id_zona_origen');
     }
 
     public function zonaDestino()
     {
-        return $this->belongsTo(ZonaModel::class, 'id_zona_destino');
+        return $this->belongsTo(ZonasModel::class, 'id_zona_destino');
     }
 
     // Almacenes

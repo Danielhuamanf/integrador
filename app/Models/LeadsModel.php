@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Traits\BackupToSqlite;
 class LeadsModel extends Model
 {
+     use BackupToSqlite;
     protected $table = 'leads';
     protected $primaryKey = 'id_lead';
 
@@ -16,7 +17,8 @@ class LeadsModel extends Model
         'correo',
         'telefono',
         'estado',
-        'mensaje'
+        'mensaje',
+        'created_at'
     ];
 
     // =========================
