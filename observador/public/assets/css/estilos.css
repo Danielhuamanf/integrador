@@ -1,0 +1,592 @@
+
+@font-face {
+  font-family: "Flama";
+  src: url("fonts/Flama-Basic.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama2";
+  src: url("fonts/Flama Bold Italic.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama3";
+  src: url("fonts/Flama Italic.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama4";
+  src: url("fonts/Flama Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama5";
+  src: url("fonts/Flama-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama6";
+  src: url("fonts/Flama-Light.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama7";
+  src: url("fonts/Flama-LightItalic.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama8";
+  src: url("fonts/Flama-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "Flama9";
+  src: url("fonts/Flama-Ultralight.woff") format("opentype");
+}
+.navbar-text{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 16px;
+	color: rgba(0,0,0,.5);
+}
+
+.navbar-text:hover{
+	font-family: Flama;
+	color: #366DF2!important;
+	
+}
+.margin-horizontal-100{
+	margin-left: 100px;
+	margin-right: 100px;
+}
+.margin-top-0{
+	margin-top: 0px!important;
+}
+.margin-horizontal-0{
+	margin-left: 0px!important;
+	margin-right: 0px!important;
+}
+.margin-top-105{
+	margin-top: 105px;
+}
+.margin-top-40{
+	margin-top: 40px;
+}
+.margin-top-100{
+	margin-top: 100px;
+}
+.padding-top-100{
+	padding-top: 100px;
+}
+.margin-top-50{
+	margin-top: 50px;
+}
+.margin-top-10{
+	margin-top: 10px;
+}
+.margin-top-60{
+	margin-top: 60px;
+}
+.padding-top-20{
+	padding-top: 20px;
+}
+.padding-top-40{
+	padding-top: 40px;
+}
+.margin-top-19{
+	margin-top: 19px;
+}
+.margin-bottom-100{
+	margin-bottom: 100px;
+}
+.margin-bottom-40{
+	margin-bottom: 40px;
+}
+.margin-bottom-20{
+	margin-bottom: 20px;
+}
+.padre-vertical-center{
+	display: flex;
+  	align-items: center;
+}
+.btn-red-text{
+	font-family: Flama9;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 11px;
+	line-height: 131.5%;
+	text-align: center;
+	letter-spacing: 1px;
+	color: #FFFFFF!important;
+}
+.banner{
+	padding-left: 28%;
+	height: 37px;
+	
+}
+.banner-productos{
+	margin-top: 94px;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.linea-superior{
+
+	border-top:  #366DF2;
+    border-style: solid;
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
+}
+.cuadro-abajo{
+	border-bottom:  #366DF2;
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+.text-d{
+	font-family: Flama9;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 185%;
+	/* identical to box height, or 26px */
+
+
+
+	color: #6E7172;
+
+}
+.descripcion-producto{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 185%;
+	/* or 26px */
+
+	width: 80%;
+	color: #6C6F70;
+
+}
+.subbanner{
+	width: 90%;
+}
+.width-auto{
+	width: auto;
+}
+.ventana1{
+	height: 429px;
+	background-image: url('../images/descarga-75 1.png');
+	background-position-x: center;
+	background-size: cover;
+}
+.ventana2{
+	height: 288px;
+	background-image: url('../images/principal1.png');
+	background-position-x: center;
+	background-size: cover;
+}
+.ventana3{
+	height: 288px;
+	background-image: url('../images/principal2.png');
+	background-position-x: center;
+	background-size: cover;
+}
+.ventana-producto{
+	background: #FAFAFA;
+}
+.padding-horizontal-85{
+	padding-left: 85px;
+	padding-right: 85px;
+}
+.padding-horizontal-100{
+	padding-left: 85px;
+	padding-right: 85px;
+}
+.white{
+	color: white!important;
+}
+.titulo1{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 30px;
+	line-height: 42px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+}
+.titulo2{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 32px;
+	line-height: 38px;
+	text-align: center;
+}
+.titulo3{
+	font-size: 23px;
+	font-weight: 600;
+
+}
+.titulo4{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 200;
+	font-size: 36px;
+	line-height: 43px;
+
+	color: #333333;
+}
+.titulo5{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 48px;
+	line-height: 102%;
+	/* or 49px */
+
+
+	color: #979FA6;
+
+}
+.container, .centro{
+	margin-left: auto;
+	margin-right: auto;
+}
+.contenido-center{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 185%;
+	/* or 30px */
+
+	text-align: center;
+
+	color: #333333;
+}
+.width-50p{
+	width: 68%;
+	margin: auto;
+}
+.width-90p{
+	width: 90%;
+}
+.subtitulo1{
+	font-family: Flama6;
+	font-style: normal;
+	font-size: 14px;
+	
+	color: #FFFFFF;
+}
+.numeros{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 131.5%;
+	/* or 32px */
+
+	text-align: center;
+
+	color: #333333;
+}
+.subtitulo3{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+	text-transform: uppercase;
+
+	color: #000000;
+	margin-top: 62px;
+}
+.nombre-pedido{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 22px;
+	/* identical to box height */
+
+
+	color: #333333;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 54px;
+}
+.precio{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 58px;
+	/* identical to box height */
+
+
+	color: #333333;
+
+}
+.subtitulo-imagen{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 22px;
+	/* identical to box height */
+
+	text-align: center;
+}
+.tabla1{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+	text-transform: uppercase;
+}
+.letra, td{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+
+	color: #333333;
+}
+.boton{
+	width: 240px;
+	height: 50px;
+	background: #366DF2;
+	border-style: hidden;
+	font-family: Flama6;
+	font-style: normal;
+	font-size: 14px;
+	/* or 18px */
+
+	text-align: center;
+
+	color: #FFFFFF;
+}
+.boton3{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 185%;
+	/* identical to box height, or 26px */
+
+	text-align: center;
+	border-style: none;
+	color: #FFFFFF;
+	background: #999999;
+	height: 50px;
+	    width: 285px;
+    right: 5%;
+    position: absolute;
+}
+.bienvenido{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 650;
+	font-size: 24px;
+	line-height: 29px;
+	/* identical to box height */
+
+
+	color: #263746;
+}
+.boton2{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 185%;
+
+	height: 50px;
+	/* identical to box height, or 26px */
+
+	text-align: center;
+
+	color: #C92F22;
+	background: white;
+	border: 1px solid #C92F22;
+	box-sizing: border-box;
+}
+.icono-imagen{
+	margin-right: 10px;
+	margin-top: -6px;
+}
+.contenido-lateral{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 185%;
+	text-align: left;
+	/* or 30px */
+
+
+	color: #333333;
+}
+.span2{
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 16px;
+	/* identical to box height */
+
+	text-transform: uppercase;
+	bottom: 0px;
+    position: absolute;
+}
+.franja{
+	background: linear-gradient(270deg, #7C1911 0.66%, #D52B1E 100%); 
+	height: 309px;
+}
+.franja-imagen{
+	background: linear-gradient(90deg, rgba(2, 2, 2, 0.5) 0%, rgba(2, 2, 2, 0) 100%);
+	background-image: url('../images/M24-Entrada-ancho-completo-L 1.png');
+	height: 458px;
+}
+.franja-text{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 17px;
+
+	color: #FFFFFF;
+}
+.formulario-texto{
+	font-family: Flama9;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+	text-align: left;
+	text-transform: uppercase;
+
+	color: #000000;
+}
+.form-control{
+	border-radius: 0px!important;
+}
+.centrar-horizontal-padre{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.subir{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 131.5%;
+	/* identical to box height, or 16px */
+
+	text-align: center;
+	letter-spacing: 0.4em;
+
+	color: #366DF2;
+}
+.ir-arriba{
+	cursor:pointer;
+}
+.active{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 650;
+	font-size: 13px;
+	line-height: 16px;
+	/* identical to box height */
+	color: #366DF2!important;
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: #366DF2!important;
+    font-family: Flama8;
+	font-style: normal;
+	font-weight: 100;
+	font-size: 12px;
+	line-height: 16px;
+}
+.footer{
+	background: #12191F;
+	height: 237px;
+}	
+.col-md2-755{
+	width: 32%;
+}
+.texto-footer{
+	font-family: Flama9;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 131.5%;
+	/* or 18px */
+
+	text-align: center;
+
+	color: #FFFFFF;
+}
+.numeros-footer{
+	font-family: Flama9;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 131.5%;
+	/* or 32px */
+
+	text-align: center;
+
+	color: #FFFFFF;
+}
+.modal-header{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 27px;
+	text-align: center;
+
+	color: #081B39;
+}
+.modal-body{
+	font-family: Flama6;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 22px;
+
+	color: #333333;
+
+}
+.precio-modal{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 58px;
+	/* identical to box height */
+
+
+	color: #333333;
+}
+.titulo-grande{
+	font-family: Flama;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 58px;
+	/* identical to box height */
+
+	text-transform: uppercase;
+
+	color: #FFFFFF;
+}

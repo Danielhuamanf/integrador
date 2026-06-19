@@ -1,0 +1,15 @@
+@media only screen and (max-width: 600px) {
+  .m-margin-horizontal-0{
+  		margin-left: 0px;
+  		margin-right: 0px;
+  }
+  .ventana1{
+  	height: 1000px;
+  }
+  .m-display-none{
+  	display: none;
+  }
+  .m-display-block{
+  	display: block !important;
+  }
+}
