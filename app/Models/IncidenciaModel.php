@@ -66,6 +66,9 @@ class IncidenciaModel extends Model
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> charles
     public static function crearConCodigo(array $datos): self
     {
         $datos['codigo'] = $datos['codigo'] ?? self::generarCodigo();
@@ -73,8 +76,11 @@ class IncidenciaModel extends Model
         return self::create($datos);
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> dev
+=======
+>>>>>>> charles
     public static function calcularPrioridad(?string $impacto, ?string $urgencia): string
     {
         $valores = ['bajo' => 1, 'medio' => 2, 'alto' => 3, 'critico' => 4];
@@ -95,7 +101,11 @@ class IncidenciaModel extends Model
         return 'baja';
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> dev
+=======
+}
+>>>>>>> charles

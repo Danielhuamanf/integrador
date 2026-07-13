@@ -74,9 +74,13 @@ Route::middleware(['admin'])->group(function () {
     // envios
     Route::get('/ver_ventas', [VentaController::class, 'index'])->name('ventas.index');
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::get('/agregar_venta',[VentaController::class, 'agregar_venta'])->name('ventas.agregar');
 =======
 >>>>>>> dev
+=======
+    Route::get('/agregar_venta',[VentaController::class, 'agregar_venta'])->name('ventas.agregar');
+>>>>>>> charles
     Route::get('/ventas/{id}', [VentaController::class, 'show'])->name('ventas.show');
     Route::get('/ventas/{id}/pdf', [VentaController::class, 'pdf'])->name('ventas.pdf');
     Route::get('/ventas/create',[VentaController::class, 'create'])->name('ventas.create');
