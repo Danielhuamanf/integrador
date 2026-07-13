@@ -17,8 +17,8 @@ class ChatController extends Controller
     }
     public function vistaAdmin()
     {
-        // seguridad básica: solo admin
-        if (session('usuario_rol') != 1) {
+        // seguridad básica: admin o agente
+        if (!in_array(session('usuario_rol'), [1, 2])) {
             return redirect('/login');
         }
         $data = [

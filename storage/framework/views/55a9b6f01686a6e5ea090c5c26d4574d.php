@@ -185,16 +185,16 @@
 
           <div class="forgot"> 
               <a href="<?php echo e(url('/')); ?>">Regresar</a>
-              <a href="#">Olvidé la contraseña</a>
+              <a href="<?php echo e(url('/recuperar_contraseña')); ?>">Olvidé la contraseña</a>
           </div>
 
           <button class="btn-login" type="submit">Login</button>
-                <?php if($errors->any()): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($errors->any()): ?>
           <p style="color:red; font-size:13px;">
               <?php echo e($errors->first()); ?>
 
           </p>
-      <?php endif; ?>
+      <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
       </form>
       <button class="social-btn"><img src="assets/google.png" width="15"> Sign in with Google</button>
       <button class="social-btn"><img src="assets/facebook.webp" width="15"> Sign in with Facebook</button>

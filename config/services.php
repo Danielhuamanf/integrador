@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'soporte' => [
+        'mailbox' => env('SOPORTE_MAILBOX'),
+        'username' => env('SOPORTE_MAIL_USERNAME'),
+        'password' => env('SOPORTE_MAIL_PASSWORD'),
+        'dias_importar' => env('SOPORTE_MAIL_DIAS_IMPORTAR', 5),
+        'marcar_leido' => env('SOPORTE_MAIL_MARCAR_LEIDO', false),
+    ],
+
 ];
