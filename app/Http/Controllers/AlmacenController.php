@@ -16,7 +16,7 @@ class AlmacenController extends Controller
         $data = [
             'url' => 'almacen'
         ];
-
+        //hola soy daniel
         
         return view('admin.almacenes', compact('almacenes','zonas','data'));
     }

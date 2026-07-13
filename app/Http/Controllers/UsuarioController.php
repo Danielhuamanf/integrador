@@ -91,17 +91,23 @@ class UsuarioController extends Controller
         $usuario = UsuarioModel::find($id);
 
         if (!$usuario) {
-            return response()->json(['error' => 'Usuario no encontrado'], 404);
+            if ($request->expectsJson()) {
+                return response()->json(['error' => 'Usuario no encontrado'], 404);
+            }
+            return back()->with('error', 'Usuario no encontrado');
         }
 
         $usuario->update($request->only([
-            'nombre',
+            'username',
             'correo',
             'rol',
-            'estado'
         ]));
 
-        return response()->json($usuario);
+        if ($request->expectsJson()) {
+            return response()->json($usuario);
+        }
+
+        return redirect('/ver_usuarios')->with('success', 'Usuario actualizado correctamente');
     }
 
     // =========================
@@ -152,9 +158,10 @@ class UsuarioController extends Controller
             'usuario_username' => $usuario->username
         ]);
 
-        return $usuario->rol === 1
-            ? redirect('/home_admin')
-            : redirect('/home_cliente');
+        if (in_array($usuario->rol, [1, 2])) {
+            return redirect('/home_admin');
+        }
+        return redirect('/home_cliente');
     }
 
     // =========================

@@ -1,279 +1,423 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Clientes</title>
 
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, sans-serif;
-    }
+<?php echo $__env->make('layouts.header_cliente', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    body{
-      background:#f4f4f7;
-    }
+<style>
 
-    .container{
-      display:flex;
-      min-height:100vh;
-    }
+.main{
+    background-image:
+    linear-gradient(
+        rgba(255,255,255,.75),
+        rgba(255,255,255,.75)
+    ),
+    url('<?php echo e(asset('assets/fondo1.webp')); ?>');
 
-    /* SIDEBAR */
-    .sidebar{
-      width:240px;
-      background:#fff;
-      padding:20px;
-      box-shadow:2px 0 10px rgba(0,0,0,0.05);
-    }
+    background-size:cover;
+    min-height:100vh;
+    flex:1;
+    padding:25px;
+}
 
-    .logo{
-      margin-bottom:30px;
-    }
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    gap:20px;
+}
 
-    .menu a{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:#666;
-      padding:12px 15px;
-      margin-bottom:8px;
-      border-radius:10px;
-      transition:.3s;
-    }
+.topbar h1{
+    color:#4b2ad6;
+    font-size:28px;
+    margin:0;
+}
 
-    .menu a:hover,
-    .menu a.active{
-      background:#ede7ff;
-      color:#4b2ad6;
-    }
+.search-box{
+    position:relative;
+}
 
-    /* MAIN */
-    .main{
-       background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
-  url('assets/fondo1.webp');
-      
-      background-size: cover;
-      flex:1;
-      padding:25px;
-    }
+.search-box input{
+    padding:12px 45px 12px 15px;
+    border:1px solid #ddd;
+    border-radius:30px;
+    width:280px;
+    background:#fff;
+    outline:none;
+}
+
+.search-box i{
+    position:absolute;
+    right:15px;
+    top:13px;
+    color:#888;
+}
+
+.panel{
+    background:#ffffffdd;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    overflow:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    text-align:left;
+    padding:16px 12px;
+    color:#777;
+    font-size:13px;
+    border-bottom:2px solid #eee;
+}
+
+td{
+    padding:18px 12px;
+    border-bottom:1px solid #f1f1f1;
+    font-size:14px;
+    color:#333;
+}
+
+tr:hover{
+    background:#fafafa;
+}
+
+.badge{
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+}
+
+.badge-success{
+    background:#e8f8ef;
+    color:#27ae60;
+}
+
+.badge-warning{
+    background:#fff5df;
+    color:#f39c12;
+}
+
+.badge-danger{
+    background:#ffeaea;
+    color:#e74c3c;
+}
+
+.badge-info{
+    background:#ece8ff;
+    color:#6c3ce9;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:currentColor;
+}
+
+.price{
+    font-weight:bold;
+    color:#6c3ce9;
+}
+
+.btn-detail{
+    background:#6c3ce9;
+    color:#fff;
+    padding:10px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:13px;
+    transition:.2s;
+}
+
+.btn-detail:hover{
+    opacity:.9;
+}
+
+.pagination{
+    display:flex;
+    justify-content:center;
+    margin-top:25px;
+}
+
+.pagination nav{
+    display:flex;
+    gap:8px;
+}
+
+.pagination span,
+.pagination a{
+    min-width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:14px;
+    border:1px solid #e5e5e5;
+    background:#fff;
+    color:#555;
+}
+
+.pagination .active span{
+    background:#6c3ce9;
+    color:#fff;
+    border-color:#6c3ce9;
+}
+
+.empty{
+    text-align:center;
+    padding:50px 20px;
+    color:#777;
+}
+
+@media(max-width:900px){
 
     .topbar{
-      display:flex;
-      align-items:center;
-      margin-bottom:25px;
-    }
-
-    .topbar h1{
-      color:#4b2ad6;
-      font-size:26px;
+        flex-direction:column;
+        align-items:flex-start;
     }
 
     .search-box{
-      position:relative;
+        width:100%;
     }
 
     .search-box input{
-      padding:10px 40px 10px 15px;
-      border:1px solid #ddd;
-      border-radius:20px;
-      width:250px;
-      background:#fff;
-    }
-
-    .search-box i{
-      position:absolute;
-      right:15px;
-      top:10px;
-      color:#888;
-    }
-
-    /* CARD TABLE */
-    .panel{
-      background:#ffffffcf;
-      padding:25px;
-      border-radius:15px;
-      box-shadow:0 3px 12px rgba(0,0,0,0.05);
-    }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-    }
-
-    th{
-      text-align:left;
-      padding:15px 10px;
-      color:#888;
-      font-size:14px;
-      font-weight:500;
-    }
-
-    td{
-      padding:15px 10px;
-      border-top:1px solid #eee;
-      font-size:14px;
-    }
-
-    tr:hover{
-      background:#fafafa;
-    }
-
-    /* USER */
-    .user{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .avatar{
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      background:#ddd;
-    }
-
-    .sub{
-      font-size:12px;
-      color:#888;
-    }
-
-    /* STATUS */
-    .status{
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-    }
-
-    .activo{ background:#6c3ce9; }
-    .inactivo{ background:#e74c3c; }
-    .premium{ background:#3498db; }
-
-    @media(max-width:900px){
-      .container{
-        flex-direction:column;
-      }
-
-      .sidebar{
         width:100%;
-      }
-
-      table{
-        font-size:12px;
-      }
     }
 
-  </style>
-</head>
+}
 
-<body>
+</style>
 
-<div class="container">
-
-  <!-- SIDEBAR (SE CONSERVA) -->
-  <div class="sidebar">
-    <div class="logo">
-      <img src="assets/logo-pasoc.webp" width="200">
-    </div>
-
-    <div class="menu">
-      <a href="home_cliente.html" ><i class="fa fa-house"></i> Home</a>
-      <a href="chat2.html"><i class="fa fa-message"></i> Chat</a>
-      <a href="envios_cliente.html" class="active" ><i class="fa fa-box"></i> Envios</a>
-      <a href="configuracion_cliente.html"><i class="fa fa-user"></i> Configuracion</a>
-      <a href="index.html"><i class="fa fa-sign-out"></i> Cerrar sesion</a>
-    </div>
-  </div>
-
-  <!-- MAIN -->
-  <div class="main">
+<div class="main">
 
     <div class="topbar">
-      <h1>Lista de Ordenes </h1>
 
-      <div class="search-box">
-         <input type="text" placeholder="Search anything here...">
-        <i class="fa fa-search"></i>
-      </div>
+        <h1>
+            Mis Órdenes
+        </h1>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar envío..."
+            >
+
+            <i class="fa fa-search"></i>
+
+        </div>
+
     </div>
 
-    <!-- TABLA CLIENTES -->
     <div class="panel">
 
-      <table>
-        <thead>
-          <tr>
-           
-            <th>Producto</th>
-            <th>ID</th>
-            <th>Estado</th>
-            <th>Ingresos</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
+        <table id="tablaOrdenes">
 
-        <tbody>
-          
-          <tr>
-          
-            <td>Envío a Perú - Lima</td>
-            <td><a href="order_detail.html">#10421</a></td>
-            <td>
-              <div class="status">
-                <div class="dot activo"></div> Paid
-              </div>
-            </td>
-            <td>$735.2</td>
-            <td>12 Jan, 2023</td>
-          </tr>
-          
-          <tr>
-            
-            <td>Envío a Perú - Arequipa</td>
-            <td><a href="order_detail.html">#10422</a></td>
-            <td>
-              <div class="status">
-                <div class="dot inactivo"></div> Canceled
-              </div>
-            </td>
-            <td>$877.12</td>
-            <td>13 Jan, 2023</td>
-          </tr>
+            <thead>
 
-          <tr>
-           
-            <td>Envío a México - Jalisco</td>
-            <td><a href="order_detail.html">#10423</a></td>
-            <td>
-              <div class="status">
-                <div class="dot premium"></div> Refunded
-              </div>
-            </td>
-            <td>$134.72</td>
-            <td>14 Jan, 2023</td>
-          </tr>
+                <tr>
 
-        </tbody>
-      </table>
+                    <th># ENVÍO</th>
+
+                    <th>ORIGEN</th>
+
+                    <th>DESTINO</th>
+
+                    <th>ESTADO</th>
+
+                    <th>FECHA</th>
+
+                    <th>TOTAL</th>
+
+                    <th>ACCIONES</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <?php $__empty_1 = true; $__currentLoopData = $ordenes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $orden): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+
+                    <?php
+
+                        $ultimoTracking =
+                            $orden->tracking->last();
+
+                        $estado =
+                            $ultimoTracking->estadoRelacion->nombre
+                            ?? 'Pendiente';
+
+                        $badge = 'badge-info';
+
+                        if(
+                            str_contains(
+                                strtolower($estado),
+                                'entregado'
+                            )
+                        ){
+                            $badge = 'badge-success';
+                        }
+
+                        if(
+                            str_contains(
+                                strtolower($estado),
+                                'cancel'
+                            )
+                        ){
+                            $badge = 'badge-danger';
+                        }
+
+                        if(
+                            str_contains(
+                                strtolower($estado),
+                                'transito'
+                            )
+                        ){
+                            $badge = 'badge-warning';
+                        }
+
+                        $total =
+                            $orden->costos->sum('monto');
+
+                    ?>
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                #<?php echo e($orden->id_envio); ?>
+
+                            </strong>
+                        </td>
+
+                        <td>
+                            <?php echo e($orden->zonaOrigen->nombre_zona ?? '-'); ?>
+
+                        </td>
+
+                        <td>
+                            <?php echo e($orden->zonaDestino->nombre_zona ?? '-'); ?>
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge <?php echo e($badge); ?>">
+
+                                <span class="dot"></span>
+
+                                <?php echo e($estado); ?>
+
+
+                            </span>
+
+                        </td>
+
+                        <td>
+                            <?php echo e(\Carbon\Carbon::parse($orden->fecha_envio)->format('d/m/Y')); ?>
+
+                        </td>
+
+                        <td class="price">
+
+                            S/
+                            <?php echo e(number_format($total,2)); ?>
+
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="<?php echo e(route('detalle_orden.show',$orden->id_envio)); ?>"
+                                class="btn-detail"
+                            >
+                                Ver detalle
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+
+                    <tr>
+
+                        <td colspan="7">
+
+                            <div class="empty">
+
+                                <i
+                                    class="fa fa-box"
+                                    style="font-size:40px;margin-bottom:15px;"
+                                ></i>
+
+                                <br>
+
+                                No tienes órdenes registradas
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                <?php endif; ?>
+
+            </tbody>
+
+        </table>
+
+        <div class="pagination">
+
+            <?php echo e($ordenes->links()); ?>
+
+
+        </div>
 
     </div>
 
-  </div>
-
 </div>
+
+<script>
+
+document.getElementById('searchInput')
+.addEventListener('keyup', function(){
+
+    let filtro =
+        this.value.toLowerCase();
+
+    let filas =
+        document.querySelectorAll(
+            '#tablaOrdenes tbody tr'
+        );
+
+    filas.forEach(fila => {
+
+        let texto =
+            fila.innerText.toLowerCase();
+
+        fila.style.display =
+            texto.includes(filtro)
+            ? ''
+            : 'none';
+
+    });
+
+});
+
+</script>
 
 </body>
 </html><?php /**PATH C:\xampp\htdocs\integrador\resources\views/cliente/envios_cliente.blade.php ENDPATH**/ ?>

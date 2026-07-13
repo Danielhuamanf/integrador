@@ -82,16 +82,26 @@
     <div class="logo"><img src="<?php echo e(asset('assets/logo-pasoc.webp')); ?>" width="200"></div>
 
     <div class="menu">
-          <a href="<?php echo e(url('/home_admin')); ?>" class="<?php echo e($data['url'] == 'home' ? 'active' : ''); ?>"><i class="fa fa-house"></i> Home</a>
+      <a href="<?php echo e(url('/home_admin')); ?>" class="<?php echo e($data['url'] == 'home' ? 'active' : ''); ?>"><i class="fa fa-house"></i> Home</a>
+      <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(session('usuario_rol') == 1): ?>
       <a href="<?php echo e(url('/dashboard_admin')); ?>" class="<?php echo e($data['url'] == 'dashboard' ? 'active' : ''); ?>"><i class="fa fa-chart-line"></i> Dashboard</a>
-      <a href="<?php echo e(url('ver_ventas')); ?>" class="<?php echo e($data['url'] == 'ventas' ? 'active' : ''); ?>"><i class="fa fa-chart-pie"></i> Envios</a>
-      <a href="<?php echo e(url('documentos')); ?>" class="<?php echo e($data['url'] == 'documentos' ? 'active' : ''); ?>"><i class="fa fa-file"></i> Documentos</a>
+      <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+      <a href="<?php echo e(url('/ver_ventas')); ?>" class="<?php echo e($data['url'] == 'ventas' ? 'active' : ''); ?>"><i class="fa fa-chart-pie"></i> Envios</a>
+      <a href="<?php echo e(url('/documentos')); ?>" class="<?php echo e($data['url'] == 'documentos' ? 'active' : ''); ?>"><i class="fa fa-file"></i> Documentos</a>
+      <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(session('usuario_rol') == 1): ?>
       <a href="<?php echo e(url('/almacen')); ?>" class="<?php echo e($data['url'] == 'almacen' ? 'active' : ''); ?>"><i class="fa fa-cubes" ></i> Almacen</a>   
       <a href="<?php echo e(url('/zonas')); ?>" class="<?php echo e($data['url'] == 'zonas' ? 'active' : ''); ?>"><i class="fa fa-globe" ></i> Zonas</a> 
-      <a href="<?php echo e(url('/precios')); ?>" class="<?php echo e($data['url'] == 'precios' ? 'active' : ''); ?>"><i class="fa-dollar" ></i> Precios</a>       
+      <a href="<?php echo e(url('/precios')); ?>" class="<?php echo e($data['url'] == 'precios' ? 'active' : ''); ?>"><i class="fa-dollar" ></i> Precios</a>
+      <a href="<?php echo e(url('/monitoreo')); ?>" class="<?php echo e($data['url'] == 'monitoreo' ? 'active' : ''); ?>"><i class="fa fa-microchip"></i> Monitoreo</a>       
+      <a href="<?php echo e(url('/incidencias')); ?>" class="<?php echo e($data['url'] == 'incidencias' ? 'active' : ''); ?>"><i class="fa fa-ticket"></i> Incidencias</a>
+      <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
       <a href="<?php echo e(url('/ver_clientes')); ?>" class="<?php echo e($data['url'] == 'clientes' ? 'active' : ''); ?>"><i class="fa fa-user-circle"></i> Clientes</a>
+      <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(session('usuario_rol') == 1): ?>
       <a href="<?php echo e(url('/ver_usuarios')); ?>" class="<?php echo e($data['url'] == 'usuarios' ? 'active' : ''); ?>"><i class="fa fa-users"></i> Usuarios</a>
       <a href="<?php echo e(url('/ver_leads')); ?>" class="<?php echo e($data['url'] == 'leads' ? 'active' : ''); ?>"><i class="fa fa-user-plus"></i> Leads</a>
+      <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+      <a href="<?php echo e(url('/chat/admin')); ?>" class="<?php echo e($data['url'] == 'Chat' ? 'active' : ''); ?>"><i class="fa fa-message"></i> Chats</a>
+      <a href="<?php echo e(url('/operador/solicitudes')); ?>" class="<?php echo e($data['url'] == 'solicitudes' ? 'active' : ''); ?>"><i class="fa fa-message"></i> Solicitudes</a>
       <a href="<?php echo e(url('/logout_admin')); ?>" class="<?php echo e($data['url'] == 'logout' ? 'active' : ''); ?>"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
     </div>
   </div>  <?php /**PATH C:\xampp\htdocs\integrador\resources\views/layouts/header.blade.php ENDPATH**/ ?>
