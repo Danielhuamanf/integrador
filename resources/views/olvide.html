@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar contraseña</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#f5f5f5;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+    }
+
+    .forgot-container{
+      width:100%;
+      max-width:450px;
+      background:white;
+      padding:50px 40px;
+      border-radius:15px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .forgot-container h2{
+      text-align:center;
+      font-size:24px;
+      color:#333;
+      margin-bottom:10px;
+    }
+
+    .forgot-container p{
+      text-align:center;
+      color:#777;
+      margin-bottom:30px;
+      font-size:14px;
+    }
+
+    .input-group{
+      margin-bottom:20px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:8px;
+      color:#444;
+      font-size:14px;
+    }
+
+    .input-group input{
+      width:100%;
+      padding:14px;
+      border:1px solid #ddd;
+      border-radius:8px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .btn-reset{
+      width:100%;
+      padding:14px;
+      background:#6c3ce9;
+      color:white;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      margin-bottom:20px;
+    }
+
+    .back-login{
+      text-align:center;
+    }
+
+    .back-login a{
+      color:#6c3ce9;
+      text-decoration:none;
+      font-size:14px;
+    }
+
+    .back-login a:hover{
+      text-decoration:underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="forgot-container">
+    <h2>¿Olvidaste la contraseña?</h2>
+    <p>Sigue las instrucciones</p>
+
+    <div class="input-group">
+      <label>Correo</label>
+      <input type="email" placeholder="Enter your email">
+    </div>
+
+    <button class="btn-reset">Reset Password</button>
+
+    <div class="back-login">
+      <a href="index.html">Back to login</a>
+    </div>
+  </div>
+
+</body>
+</html>
