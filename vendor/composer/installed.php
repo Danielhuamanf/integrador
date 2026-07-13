@@ -76,6 +76,18 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
+=======
+        'doctrine/sql-formatter' => array(
+            'pretty_version' => '1.5.4',
+            'version' => '1.5.4.0',
+            'reference' => '9563949f5cd3bd12a17d12fb980528bc141c5806',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doctrine/sql-formatter',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+>>>>>>> dev
         'dompdf/dompdf' => array(
             'pretty_version' => 'v3.1.5',
             'version' => '3.1.5.0',
@@ -469,6 +481,18 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
+=======
+        'laravel/pulse' => array(
+            'pretty_version' => 'v1.7.4',
+            'version' => '1.7.4.0',
+            'reference' => '6daab88ef368c0a1272a4401d90d514b30829225',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/pulse',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+>>>>>>> dev
         'laravel/sail' => array(
             'pretty_version' => 'v1.58.0',
             'version' => '1.58.0.0',
@@ -478,6 +502,18 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+<<<<<<< HEAD
+=======
+        'laravel/sentinel' => array(
+            'pretty_version' => 'v1.1.0',
+            'version' => '1.1.0.0',
+            'reference' => '972d9885d9d14312a118e9565c4e6ecc5e751ea1',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/sentinel',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+>>>>>>> dev
         'laravel/serializable-closure' => array(
             'pretty_version' => 'v2.0.13',
             'version' => '2.0.13.0',
@@ -559,6 +595,18 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+<<<<<<< HEAD
+=======
+        'livewire/livewire' => array(
+            'pretty_version' => 'v4.3.3',
+            'version' => '4.3.3.0',
+            'reference' => '8021f2561865c4c297a3bfca37212a99034377e7',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../livewire/livewire',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+>>>>>>> dev
         'masterminds/html5' => array(
             'pretty_version' => '2.10.0',
             'version' => '2.10.0.0',

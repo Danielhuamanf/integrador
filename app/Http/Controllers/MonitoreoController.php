@@ -35,6 +35,7 @@ class MonitoreoController extends Controller
             );
 
             foreach ($matches as $match) {
+<<<<<<< HEAD
                 $mensaje = trim($match[4]);
                 $nivel = strtoupper(trim($match[3]));
                 $nivelInfo = $this->nivelEstandar($nivel);
@@ -50,6 +51,21 @@ class MonitoreoController extends Controller
                     'descripcion' => $this->describirEvento($mensaje, $nivel),
                     'solucion' => $this->sugerirSolucion($mensaje, $nivel),
                 ];
+=======
+
+                $eventos[] = [
+
+                    'fecha' => trim($match[1]),
+
+                    'canal' => trim($match[2]),
+
+                    'nivel' => strtoupper(trim($match[3])),
+
+                    'mensaje' => trim($match[4])
+
+                ];
+
+>>>>>>> dev
             }
 
         }
@@ -64,6 +80,14 @@ class MonitoreoController extends Controller
 
         /*
         |--------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+        | CONTINÚA EN LA PARTE 2
+        |--------------------------------------------------------------------------
+        */
+          /*
+        |--------------------------------------------------------------------------
+>>>>>>> dev
         | FILTROS
         |--------------------------------------------------------------------------
         */
@@ -76,6 +100,10 @@ class MonitoreoController extends Controller
 
         $eventos = collect($eventos)->filter(function ($evento) use ($buscar, $nivel, $fecha) {
 
+<<<<<<< HEAD
+=======
+            // Buscar texto
+>>>>>>> dev
             if ($buscar != '') {
 
                 $texto = strtolower(
@@ -91,10 +119,18 @@ class MonitoreoController extends Controller
                 }
             }
 
+<<<<<<< HEAD
+=======
+            // Filtrar por nivel
+>>>>>>> dev
             if ($nivel != '' && $evento['nivel'] != $nivel) {
                 return false;
             }
 
+<<<<<<< HEAD
+=======
+            // Filtrar por fecha
+>>>>>>> dev
             if ($fecha != '' && !str_contains($evento['fecha'], $fecha)) {
                 return false;
             }
@@ -179,6 +215,7 @@ class MonitoreoController extends Controller
 
     }
 
+<<<<<<< HEAD
     private function nivelEstandar(string $nivel): array
     {
         $mapa = [
@@ -575,3 +612,7 @@ class MonitoreoController extends Controller
     }
 
 }
+=======
+
+}
+>>>>>>> dev

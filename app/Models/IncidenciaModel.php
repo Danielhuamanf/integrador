@@ -65,6 +65,7 @@ class IncidenciaModel extends Model
         return 'INC-' . $fecha . '-' . str_pad((string) $totalDelDia, 2, '0', STR_PAD_LEFT);
     }
 
+<<<<<<< HEAD
     public static function crearConCodigo(array $datos): self
     {
         $datos['codigo'] = $datos['codigo'] ?? self::generarCodigo();
@@ -72,6 +73,8 @@ class IncidenciaModel extends Model
         return self::create($datos);
     }
 
+=======
+>>>>>>> dev
     public static function calcularPrioridad(?string $impacto, ?string $urgencia): string
     {
         $valores = ['bajo' => 1, 'medio' => 2, 'alto' => 3, 'critico' => 4];
@@ -91,4 +94,8 @@ class IncidenciaModel extends Model
 
         return 'baja';
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dev

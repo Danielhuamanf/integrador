@@ -467,6 +467,7 @@ table tbody tr.row-danger td a{color:#fff;}
     font-family:monospace;
 }
 
+<<<<<<< HEAD
 /* GRAVEDAD */
 .gravedad-bar{display:flex;gap:2px;}
 .gravedad-bar span{width:10px;height:14px;border-radius:2px;}
@@ -476,6 +477,8 @@ details summary{cursor:pointer;padding:5px 0;}
 details summary::-webkit-details-marker{color:#0d6efd;}
 details .sol-box{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:10px;border-left:4px solid #2e7d32;}
 
+=======
+>>>>>>> dev
 /* ACTUALIZAR BOTTOM */
 .bottom-actions{
     text-align:center;
@@ -584,6 +587,7 @@ details .sol-box{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:1
 <form method="GET">
 <div class="filter-row">
 <input type="text" name="buscar" value="{{ request('buscar') }}" placeholder="Buscar mensaje...">
+<<<<<<< HEAD
         <select name="nivel">
             <option value="">Todos</option>
             <option value="EMERGENCY">EMERGENCY — Toda la app inutilizable</option>
@@ -595,6 +599,19 @@ details .sol-box{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:1
             <option value="INFO">INFO — Informativo</option>
             <option value="DEBUG">DEBUG — Depuración</option>
         </select>
+=======
+<select name="nivel">
+<option value="">Todos</option>
+<option value="INFO">INFO</option>
+<option value="NOTICE">NOTICE</option>
+<option value="DEBUG">DEBUG</option>
+<option value="WARNING">WARNING</option>
+<option value="ERROR">ERROR</option>
+<option value="CRITICAL">CRITICAL</option>
+<option value="ALERT">ALERT</option>
+<option value="EMERGENCY">EMERGENCY</option>
+</select>
+>>>>>>> dev
 <input type="date" name="fecha" value="{{ request('fecha') }}">
 <button class="btn-buscar"><i class="fa fa-search"></i> Buscar</button>
 </div>
@@ -613,6 +630,7 @@ details .sol-box{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:1
 <table>
 <thead>
 <tr>
+<<<<<<< HEAD
             <th>#</th>
             <th>Fecha</th>
             <th>Nivel</th>
@@ -621,6 +639,14 @@ details .sol-box{background:#e8f5e9;padding:15px;border-radius:10px;margin-top:1
             <th>Descripción</th>
             <th>Mensaje</th>
             <th>Acción</th>
+=======
+<th>#</th>
+<th>Fecha</th>
+<th>Nivel</th>
+<th>Canal</th>
+<th>Mensaje</th>
+<th>Acción</th>
+>>>>>>> dev
 </tr>
 </thead>
 <tbody>
@@ -657,6 +683,7 @@ case 'EMERGENCY': $tag='tag-danger'; break;
 <tr class="{{ $fila }}">
 <td>{{ $loop->iteration + (($eventos->currentPage()-1) * $eventos->perPage()) }}</td>
 <td><i class="fa fa-clock"></i> {{ $evento['fecha'] }}</td>
+<<<<<<< HEAD
 <td><span class="tag {{ $tag }}" title="{{ $evento['nivel_desc'] }}">{{ $evento['nivel_nombre'] }}</span></td>
 <td>
 @php $g = $evento['gravedad']; @endphp
@@ -666,6 +693,10 @@ case 'EMERGENCY': $tag='tag-danger'; break;
 </td>
 <td><span class="tag tag-light">{{ $evento['canal'] }}</span></td>
 <td><i class="fa fa-info-circle"></i> {{ $evento['descripcion'] }}</td>
+=======
+<td><span class="tag {{ $tag }}">{{ $nivel }}</span></td>
+<td><span class="tag tag-light">{{ $evento['canal'] }}</span></td>
+>>>>>>> dev
 <td class="msg-preview">{{ \Illuminate\Support\Str::limit($evento['mensaje'],120) }}</td>
 <td><a href="#detalle{{$loop->index}}" class="btn-ver"><i class="fa fa-eye"></i></a></td>
 </tr>
@@ -673,7 +704,11 @@ case 'EMERGENCY': $tag='tag-danger'; break;
 @empty
 
 <tr>
+<<<<<<< HEAD
 <td colspan="8" style="text-align:center;padding:60px 20px;color:#999;">
+=======
+<td colspan="6" style="text-align:center;padding:60px 20px;color:#999;">
+>>>>>>> dev
 <i class="fa fa-database" style="font-size:60px;display:block;margin-bottom:15px;"></i>
 <h4 style="margin:0;color:#666;">No existen eventos registrados</h4>
 </td>
@@ -710,6 +745,7 @@ case 'EMERGENCY': $tag='tag-danger'; break;
 <div class="modal-info">
 <div><strong>Fecha</strong><span>{{ $evento['fecha'] }}</span></div>
 <div><strong>Canal</strong><span>{{ $evento['canal'] }}</span></div>
+<<<<<<< HEAD
 <div><strong>Nivel</strong><span class="tag {{ $tag }}">{{ $evento['nivel_nombre'] }} ({{ $evento['nivel'] }})</span></div>
 <div><strong>Gravedad</strong><span>
 @php $g = $evento['gravedad']; @endphp
@@ -720,10 +756,14 @@ case 'EMERGENCY': $tag='tag-danger'; break;
 </span></div>
 <div><strong>Descripción</strong><span>{{ $evento['nivel_desc'] }}</span></div>
 <div><strong>Clasificación</strong><span>{{ $evento['descripcion'] }}</span></div>
+=======
+<div><strong>Nivel</strong><span>{{ $evento['nivel'] }}</span></div>
+>>>>>>> dev
 </div>
 <hr class="modal-divider">
 <strong style="display:block;margin-bottom:10px;">Mensaje completo</strong>
 <div class="modal-mensaje">{{ $evento['mensaje'] }}</div>
+<<<<<<< HEAD
 
 @if($evento['solucion']['solucion'])
 <hr class="modal-divider">
@@ -743,6 +783,8 @@ case 'EMERGENCY': $tag='tag-danger'; break;
 </details>
 @endif
 
+=======
+>>>>>>> dev
 </div>
 </div>
 </div>

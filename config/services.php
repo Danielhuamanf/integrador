@@ -36,11 +36,19 @@ return [
     ],
 
     'soporte' => [
+<<<<<<< HEAD
         'mailbox' => env('SOPORTE_MAILBOX'),
         'username' => env('SOPORTE_MAIL_USERNAME'),
         'password' => env('SOPORTE_MAIL_PASSWORD'),
         'dias_importar' => env('SOPORTE_MAIL_DIAS_IMPORTAR', 5),
         'marcar_leido' => env('SOPORTE_MAIL_MARCAR_LEIDO', false),
+=======
+        'mailbox' => env('SOPORTE_MAILBOX', '{imap.gmail.com:993/imap/ssl}INBOX'),
+        'username' => env('SOPORTE_MAIL_USERNAME', env('MAIL_USERNAME')),
+        'password' => env('SOPORTE_MAIL_PASSWORD', env('MAIL_PASSWORD')),
+        'marcar_leido' => env('SOPORTE_MARCAR_LEIDO', true),
+        'destino_desarrollo' => env('SOPORTE_DESTINO_DESARROLLO', 'danielhuamanflores@hotmail.com'),
+>>>>>>> dev
     ],
 
 ];

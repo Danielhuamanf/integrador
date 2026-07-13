@@ -15,8 +15,13 @@ class AdminMiddleware
             return redirect('/login');
         }
 
+<<<<<<< HEAD
         // Verificar rol admin
         if (session('usuario_rol') != 1) {
+=======
+        // Verificar rol admin (1) o agente (2)
+        if (!in_array(session('usuario_rol'), [1, 2])) {
+>>>>>>> dev
             return redirect('/login');
         }
 
